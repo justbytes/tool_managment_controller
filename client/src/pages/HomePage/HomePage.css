@@ -1,0 +1,7 @@
+.option {
+  display: grid;
+  margin: auto;
+  text-align: center;
+  width: 28%;
+  font-size: 22px;
+}
