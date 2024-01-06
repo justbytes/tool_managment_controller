@@ -3,20 +3,21 @@ import axios from "axios";
 
 import "./CreateWO.css";
 
+interface Tool {
+  part: string;
+  date: string;
+}
+
+interface WorkOrder {
+  part_number: string;
+  serial_number: string;
+  customer: string;
+  tools: Tool[];
+}
+
+
 const CreateWO = () => {
-
-  interface Tool {
-    part: string;
-    date: string;
-  }
-
-  interface WorkOrder {
-    part_number: string;
-    serial_number: string;
-    customer: string;
-    tools: Tool[];
-  }
- 
+  // Create inital variables and set state
   const initialWorkOrder: WorkOrder = {
     part_number: '',
     serial_number: '',
@@ -30,7 +31,6 @@ const CreateWO = () => {
       {part: '', date: ''},
     ]
   }
-
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
