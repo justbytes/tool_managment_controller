@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {spawn} from 'child_process'
-import path from 'path';
+import path, { join } from 'path';
 
 
 
@@ -27,16 +27,34 @@ interface WorkOrder {
 // Saves work order data to the db to be archived.
 mainRouter.post('/excel', async (req, res) => {
 
-  
-  const filePath = path.join(__dirname, 'excel', 'WorkOrderTemplate.xlsx');
+  const filePath = path.join(__dirname, 'HandleExcel.py')
 
   try {
     const data: WorkOrder = req.body;
-  
-    const python = spawn('python', [path.join(__dirname, 'HandleExcel.py')])
+    //const data: string = "hello?"
 
-    res.json('Excel stuff here');
-    console.log(data);
+    console.log("Data sent to python", data);
+
+    const python = spawn('py', [filePath, JSON.stringify(data)]);
+
+    python.stdout.on('data', (data) => {
+      // console.log("data recieved from python", JSON.parse(data.toString()));
+      console.log("data recieved from python", data.toString());
+    })
+
+    python.stderr.on('data', (data) => {
+      console.error(`Error: ${data.toString()}`);
+    });
+    
+    python.on('close', (code) => {
+      console.log(`Child process exited with code ${code}`);
+    });
+    
+  
+    
+
+    res.json('Workorder conformation: ???');
+    
     
   } catch (error) {
     console.error('Error reading Excel file:', error);
@@ -48,6 +66,3 @@ mainRouter.post('/excel', async (req, res) => {
 
 export default mainRouter;
 
-function expect(type: any) {
-  throw new Error('Function not implemented.');
-}
