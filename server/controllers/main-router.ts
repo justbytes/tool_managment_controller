@@ -4,6 +4,7 @@ import {WorkOrder } from '../interface/interface'
 import GenerateWONumber from './GenerateWONumber'
 import DbUpdater from './DbUpdater'
 import  ExcelHandler from './ExcelHandler'
+import { workerData } from 'worker_threads';
 
 
 const mainRouter = Router();
@@ -22,16 +23,16 @@ mainRouter.post('/excel', async (req, res) => {
 
   try {
     // Generate the order number for the work order and asign it to the object
-    const generate_wo_number = await GenerateWONumber()
-    console.log("This is the order_number:", generate_wo_number);
-    // TODO: Asign the number to the order_number here...
+    const wo_complete = await GenerateWONumber(data)
+    console.log("This is the order_number:", wo_complete);
+
     
     // Update the DB with the new work order
-    const updater = await DbUpdater(data)
+    const updater = await DbUpdater(wo_complete)
     console.log("Status of update", updater);
     
     // Creates the work order in excel and saves it to the file dump folder
-    const excel = await ExcelHandler(data);
+    const excel = await ExcelHandler(wo_complete);
     console.log("This is after excel method.", excel);
     
     
