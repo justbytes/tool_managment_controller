@@ -12,6 +12,7 @@ interface WorkOrder {
   part_number: string;
   serial_number: string;
   customer: string;
+  order_number: string;
   tools: Tool[];
 }
 
@@ -22,6 +23,7 @@ const CreateWO = () => {
     part_number: '',
     serial_number: '',
     customer: '',
+    order_number: '',
     tools: [
       {part: '', date: ''},
       {part: '', date: ''},

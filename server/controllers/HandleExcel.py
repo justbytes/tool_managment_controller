@@ -40,23 +40,20 @@ class WorkOrder:
         workbook.save(fn)
 
 
-
-#data_back = "im python"
-
+# Take incoming data from typescript file and format it to json
+# Reasign input data to workOrder var
 input_data = json.loads(sys.argv[1])
-
 workOrder = input_data['workOrder']
 
+# Get each field from workOrder
 part_number = workOrder['part_number']
 serial_number = workOrder['serial_number']
 customer = workOrder['customer']
 tools = workOrder['tools']
 
-
+# Instantiate WorkOrder class 
 processor = WorkOrder(workOrder)
 processor.__create__()
-
-# output1 = json.dumps({"tools": tools})
 
 
 print("It was a success.")
@@ -64,3 +61,8 @@ print("It was a success.")
 
 
 sys.stdout.flush()
+
+
+
+####################################################################################################################################################################
+### output1 = json.dumps({"tools": tools})

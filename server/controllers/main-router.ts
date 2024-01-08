@@ -1,22 +1,13 @@
 import { Router } from 'express';
-import {spawn} from 'child_process'
-import path, { join } from 'path';
+import {WorkOrder } from '../interface/interface'
 
+import GenerateWONumber from './GenerateWONumber'
+import DbUpdater from './DbUpdater'
+import  ExcelHandler from './ExcelHandler'
 
 
 const mainRouter = Router();
 
-interface Tool {
-  part: string;
-  date: string;
-}
-
-interface WorkOrder {
-  part_number: string;
-  serial_number: string;
-  customer: string;
-  tools: Tool[];
-}
 
 // TODO: Create update WO route
 // Read work order from db print all data to excel or
@@ -27,32 +18,23 @@ interface WorkOrder {
 // Saves work order data to the db to be archived.
 mainRouter.post('/excel', async (req, res) => {
 
-  const filePath = path.join(__dirname, 'HandleExcel.py')
+  const data: WorkOrder = req.body;
 
   try {
-    const data: WorkOrder = req.body;
-    //const data: string = "hello?"
-
-    console.log("Data sent to python", data);
-
-    const python = spawn('py', [filePath, JSON.stringify(data)]);
-
-    python.stdout.on('data', (data) => {
-      // console.log("data recieved from python", JSON.parse(data.toString()));
-      console.log("data recieved from python", data.toString());
-    })
-
-    python.stderr.on('data', (data) => {
-      console.error(`Error: ${data.toString()}`);
-    });
+    // Generate the order number for the work order and asign it to the object
+    const generate_wo_number = await GenerateWONumber()
+    console.log("This is the order_number:", generate_wo_number);
+    // TODO: Asign the number to the order_number here...
     
-    python.on('close', (code) => {
-      console.log(`Child process exited with code ${code}`);
-    });
+    // Update the DB with the new work order
+    const updater = await DbUpdater(data)
+    console.log("Status of update", updater);
     
-  
+    // Creates the work order in excel and saves it to the file dump folder
+    const excel = await ExcelHandler(data);
+    console.log("This is after excel method.", excel);
     
-
+    
     res.json('Workorder conformation: ???');
     
     

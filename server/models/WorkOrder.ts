@@ -6,6 +6,7 @@ class WorkOrder extends Model<InferAttributes<WorkOrder>, InferCreationAttribute
   declare part_number: string;
   declare serial_number: string;
   declare customer: string;
+  declare order_number: string;
   declare date_created: CreationOptional<Date>;
   
 }
@@ -30,12 +31,18 @@ WorkOrder.init(
       type: DataTypes.STRING,
       allowNull: false, 
     },
+    order_number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
 
+    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
-    }
+    },
+    
   },
   {
     sequelize,
