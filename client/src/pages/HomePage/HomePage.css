@@ -4,4 +4,17 @@
   text-align: center;
   width: 28%;
   font-size: 22px;
+  justify-content: center;
+}
+
+.big-a {
+  text-decoration: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.622);
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 8px;
+  text-align: center;
+  width: 14rem;
 }

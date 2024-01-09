@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import "./CreateWO.css";
@@ -16,38 +16,37 @@ interface WorkOrder {
   tools: Tool[];
 }
 
-
 const CreateWO = () => {
   // Create inital variables and set state
   const initialWorkOrder: WorkOrder = {
-    part_number: '',
-    serial_number: '',
-    customer: '',
-    order_number: '',
+    part_number: "",
+    serial_number: "",
+    customer: "",
+    order_number: "",
     tools: [
-      {part: '', date: ''},
-      {part: '', date: ''},
-      {part: '', date: ''},
-      {part: '', date: ''},
-      {part: '', date: ''},
-      {part: '', date: ''},
-    ]
-  }
-  const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder)
+      { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
+    ],
+  };
+  const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      console.log(`WORKORDER SUBMIT`)
-      const response = await axios.post('http://localhost:3001/excel', {
-        workOrder
-      });
-      const data: string = response.data
+    e.preventDefault();
+    console.log(`WORKORDER SUBMIT`);
+    const response = await axios.post("http://localhost:3001/excel", {
+      workOrder,
+    });
+    const data: string = response.data;
 
-      console.log(data);
-      
-      // ADD CAPABILITY TO SEE HOW MANY WO's HAVE BEEN CREATED
-      setWorkOrder(initialWorkOrder)
-  }
+    console.log(data);
+
+    // ADD CAPABILITY TO SEE HOW MANY WO's HAVE BEEN CREATED
+    setWorkOrder(initialWorkOrder);
+  };
 
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -55,7 +54,7 @@ const CreateWO = () => {
       ...workOrder,
       part_number: value,
     });
-  }
+  };
 
   const handleSerialNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -63,7 +62,7 @@ const CreateWO = () => {
       ...workOrder,
       serial_number: value,
     });
-  }
+  };
 
   const handleCustomerChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -71,9 +70,13 @@ const CreateWO = () => {
       ...workOrder,
       customer: value,
     });
-  }
+  };
 
-  const handleToolChange = (e: React.FormEvent<HTMLInputElement>, index: number, field: keyof Tool) => {
+  const handleToolChange = (
+    e: React.FormEvent<HTMLInputElement>,
+    index: number,
+    field: keyof Tool
+  ) => {
     const value = (e.target as HTMLInputElement).value;
     const updatedWorkOrder = [...workOrder.tools];
     updatedWorkOrder[index][field] = value;
@@ -81,41 +84,66 @@ const CreateWO = () => {
       ...prevWorkOrder,
       tools: updatedWorkOrder,
     }));
-  }
+  };
 
   console.log(workOrder);
-  
 
   return (
     <section className="createWO">
       <form className="form" onSubmit={handleSubmit}>
-        <div className="top">
-          <input type="text" onChange={handlePartNumberChange} placeholder="Part Number" value={workOrder.part_number || ''} />
-          <input type="text" onChange={handleSerialNumberChange} placeholder="Serial Number" value={workOrder.serial_number || ''}/>
-          <input type="text" onChange={handleCustomerChange} placeholder="Customer Name" value={workOrder.customer || ''}/>
+        <div className="left">
+          <input
+            className="single-input"
+            type="text"
+            onChange={handlePartNumberChange}
+            placeholder="Part Number"
+            value={workOrder.part_number || ""}
+          />
+          <input
+            className="single-input"
+            type="text"
+            onChange={handleSerialNumberChange}
+            placeholder="Serial Number"
+            value={workOrder.serial_number || ""}
+          />
+          <input
+            className="single-input"
+            type="text"
+            onChange={handleCustomerChange}
+            placeholder="Customer Name"
+            value={workOrder.customer || ""}
+          />
         </div>
-        {workOrder.tools.map((tools, index) => (
+        <div className="tool-container">
+          {workOrder.tools.map((tools, index) => (
             <div key={index} className="calibration-tools">
-            <div className="calibration-tool-field">
-              <input type="text" name="part" value={tools.part || ''} onChange={(e) => handleToolChange(e, index, 'part')} placeholder="Calibration Tool Part Number" />
-              <input
-                value={tools.date || ''}
-                onChange={(e) => handleToolChange(e, index, 'date')}
-                type="date"
-                id="cal-date"
-                name="cal-date"
-              />
+              <div className="calibration-tool-field">
+                <input
+                  className="input-tool-pn"
+                  type="text"
+                  name="part"
+                  value={tools.part || ""}
+                  onChange={(e) => handleToolChange(e, index, "part")}
+                  placeholder="Calibration Tool Part Number"
+                />
+                <input
+                  value={tools.date || ""}
+                  onChange={(e) => handleToolChange(e, index, "date")}
+                  type="date"
+                  id="cal-date"
+                  name="cal-date"
+                />
+              </div>
             </div>
-          </div>
-        ))}
-        
-        <div>
-          <button type="submit">Submit</button>
+          ))}
+        </div>
+        <div className="btn-container">
+          <button className="btn" type="submit">
+            Submit
+          </button>
+          <a href="#/">Home</a>
         </div>
       </form>
-      <div className="back-btn">
-        <a href="#/">Home</a>
-      </div>
     </section>
   );
 };

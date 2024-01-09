@@ -9,9 +9,15 @@ function HomePage() {
         <div className="title">
           <h1>Main Menu</h1>
         </div>
-        <a href="#/create-wo">Create WO</a>
-        <a href="#/add-item">Add New Item</a>
-        <a href="#/update-item">Update Item</a>
+        <a className="big-a" href="#/create-wo">
+          Create WO
+        </a>
+        <a className="big-a" href="#/add-item">
+          Add New Item
+        </a>
+        <a className="big-a" href="#/update-item">
+          Update Item
+        </a>
       </div>
     </section>
   );
