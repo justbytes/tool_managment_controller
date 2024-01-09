@@ -1,8 +1,8 @@
 interface Tool {
-    part: string;
-    date: string;
-  }
-  
+  part: string;
+  date: string;
+}
+
 export interface WorkOrder {
   workOrder: {
     part_number: string;
@@ -10,6 +10,5 @@ export interface WorkOrder {
     customer: string;
     order_number: string;
     tools: Tool[];
-  }
-
+  };
 }

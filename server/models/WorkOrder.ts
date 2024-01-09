@@ -1,17 +1,25 @@
-import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import sequelize from '../config/connection';
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
+import sequelize from "../config/connection";
 
-class WorkOrder extends Model<InferAttributes<WorkOrder>, InferCreationAttributes<WorkOrder>> {
+class Work_Order extends Model<
+  InferAttributes<Work_Order>,
+  InferCreationAttributes<Work_Order>
+> {
   declare id: CreationOptional<number>;
   declare part_number: string;
   declare serial_number: string;
   declare customer: string;
   declare order_number: string;
   declare date_created: CreationOptional<Date>;
-  
 }
 
-WorkOrder.init(
+Work_Order.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,32 +33,30 @@ WorkOrder.init(
     },
     serial_number: {
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: false,
     },
-    customer : {
+    customer: {
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: false,
     },
     order_number: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-
     },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    
   },
   {
     sequelize,
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'workOrder',
+    modelName: "workOrder",
   }
 );
 
-export default WorkOrder;
+export default Work_Order;
