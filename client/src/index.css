@@ -1,9 +1,8 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  /* color-scheme: light dark; */
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #5f5b5bb2;
-
+  color: black;
+  background-color: #010000ae;
+  box-shadow: inset 3px 3px 55px 55px rgba(0, 0, 0, 0.181);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
