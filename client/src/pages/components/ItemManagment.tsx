@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddItem = () => {
+const ItemManagment = () => {
   return (
     <section>
       <h1>Add Item</h1>
@@ -11,4 +11,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default ItemManagment;

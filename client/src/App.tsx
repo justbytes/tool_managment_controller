@@ -2,8 +2,8 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
-import AddItem from "./pages/AddItem";
-import UpdateItem from "./pages/UpdateItem";
+import ItemManagment from "./pages/components/ItemManagment";
+import Archive from "./pages/Archive/Archive";
 import CreateWO from "./pages/CreateWO/CreateWO";
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/add-item" element={<AddItem />} />
-          <Route path="update-item" element={<UpdateItem />} />
+          <Route path="/item-managment" element={<ItemManagment />} />
+          <Route path="archive" element={<Archive />} />
           <Route path="create-wo" element={<CreateWO />} />
         </Routes>
       </HashRouter>
