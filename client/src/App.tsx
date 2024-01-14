@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
-import ItemManagment from "./pages/components/ItemManagment";
+import ItemManagment from "./pages/ItemManagment/ItemManagment";
 import Archive from "./pages/Archive/Archive";
 import CreateWO from "./pages/CreateWO/CreateWO";
 

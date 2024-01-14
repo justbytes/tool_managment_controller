@@ -1,10 +1,14 @@
 .option {
+  border: 9px solid white;
+  border-radius: 10px;
   display: grid;
   margin: auto;
   text-align: center;
   width: 28%;
   font-size: 22px;
   justify-content: center;
+  padding: 13%;
+  box-shadow: inset 5px 5px 25px 25px #ffffff30;
 }
 
 .title {
