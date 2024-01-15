@@ -16,21 +16,25 @@ const ItemManagment = () => {
       case "itemManagementHome":
         return (
           <>
+            <div className="title">
+              <h1>Item Management</h1>
+            </div>
             <a className="big-a" onClick={handleUpdateTool}>
-              Update a Tool
+              Update Tool
             </a>
             <a className="big-a" onClick={handleAddPartNumber}>
-              Add a Part Number
-            </a>
-            <a className="big-a" href="#/">
-              Create a Template
+              Add Tool
             </a>
           </>
         );
       case "addPartNumber":
-        return <AddPartNumber />;
+        return (
+          <AddPartNumber handleItemManagementHome={handleItemManagementHome} />
+        );
       case "updateTool":
-        return <UpdateTool />;
+        return (
+          <UpdateTool handleItemManagementHome={handleItemManagementHome} />
+        );
       default:
         return null;
     }
@@ -39,9 +43,6 @@ const ItemManagment = () => {
   return (
     <section className="item-managment">
       <div className="option">
-        <div className="title">
-          <h1>Item Managment</h1>
-        </div>
         {renderComponent()}
         {currentOption === "itemManagementHome" ? (
           <div className="back-btn">
@@ -49,7 +50,6 @@ const ItemManagment = () => {
           </div>
         ) : (
           <div className="back-btn">
-            <a onClick={handleItemManagementHome}>Back</a>
             <a href="#/">Home</a>
           </div>
         )}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Tool } from "../../interface/interface";
+import { Tool, AddProps } from "../../interface/interface";
 
 import "./components.css";
 
-const UpdateTool = () => {
+const UpdateTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
   const initalPart: Tool = {
     part: "",
     date: "",
@@ -29,6 +29,9 @@ const UpdateTool = () => {
 
   return (
     <>
+      <div className="title">
+        <h1>Update Tool</h1>
+      </div>
       <form className="search-form">
         <div className="search-conatiner">
           <input
@@ -38,7 +41,7 @@ const UpdateTool = () => {
             placeholder="Search Part Number"
           />
           <button className="btn" type="submit">
-            Submit
+            Search
           </button>
         </div>
       </form>
@@ -58,6 +61,12 @@ const UpdateTool = () => {
               id="cal-date"
               name="date"
             />
+          </div>
+          <div className="btn-container">
+            <button onClick={handleItemManagementHome}>back</button>
+            <button className="btn" type="submit">
+              Submit
+            </button>
           </div>
         </div>
       </form>

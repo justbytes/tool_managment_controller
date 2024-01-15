@@ -10,3 +10,7 @@ export interface WorkOrder {
   order_number: string;
   tools: Tool[];
 }
+
+export interface AddProps {
+  handleItemManagementHome: () => void;
+}
