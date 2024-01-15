@@ -2,7 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: black;
   background-color: #010000ae;
-  box-shadow: inset 3px 3px 55px 55px rgba(0, 0, 0, 0.181);
+  box-shadow: inset 3px 3px 55px 55px hsla(0, 0, 0, 0.181);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,20 +14,29 @@
   min-width: 100vw;
   min-height: 100vh;
   align-items: center;
+  display: flex;
 }
 
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 100vw;
   min-height: 100vh;
+  justify-content: center;
 }
 
 section {
-  min-height: 100vh;
-  min-width: 100vw;
+  width: 95%;
+  height: 90%;
+  max-width: 100%;
+  border: 3px solid white;
+  border-radius: 25px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  padding: 20px;
+  background-color: rgba(164, 187, 219, 0.367);
 }
 
 a {

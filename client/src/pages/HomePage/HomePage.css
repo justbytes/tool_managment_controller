@@ -1,5 +1,5 @@
 .option {
-  border: 9px solid white;
+  border: 1px solid white;
   border-radius: 10px;
   display: grid;
   margin: auto;
@@ -8,7 +8,8 @@
   font-size: 22px;
   justify-content: center;
   padding: 13%;
-  box-shadow: inset 5px 5px 25px 25px #ffffff30;
+  background-color: rgba(240, 248, 255, 0.229);
+  opacity: 120px;
 }
 
 .title {

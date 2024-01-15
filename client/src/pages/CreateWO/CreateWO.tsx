@@ -30,6 +30,9 @@ const CreateWO = () => {
       { part: "", date: "" },
       { part: "", date: "" },
       { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
+      { part: "", date: "" },
     ],
   };
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
@@ -114,29 +117,35 @@ const CreateWO = () => {
             value={workOrder.customer || ""}
           />
         </div>
-        <div className="tool-container">
-          {workOrder.tools.map((tools, index) => (
-            <div key={index} className="calibration-tools">
-              <div className="calibration-tool-field">
-                <input
-                  className="input-tool-pn"
-                  type="text"
-                  name="part"
-                  value={tools.part || ""}
-                  onChange={(e) => handleToolChange(e, index, "part")}
-                  placeholder="Calibration Tool Part Number"
-                />
-                <input
-                  value={tools.date || ""}
-                  onChange={(e) => handleToolChange(e, index, "date")}
-                  type="date"
-                  id="cal-date"
-                  name="cal-date"
-                />
+        <div className="tool-div">
+          <div className="tool-container">
+            {workOrder.tools.map((tools, index) => (
+              <div key={index} className="calibration-tools">
+                <div className="calibration-tool-field">
+                  <input
+                    className="input-tool-pn"
+                    type="text"
+                    name="part"
+                    value={tools.part || ""}
+                    onChange={(e) => handleToolChange(e, index, "part")}
+                    placeholder="Calibration Tool Part Number"
+                  />
+                  <input
+                    value={tools.date || ""}
+                    onChange={(e) => handleToolChange(e, index, "date")}
+                    type="date"
+                    id="cal-date"
+                    name="cal-date"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="more-stuff">
+            <h3>More stuff here.</h3>
+          </div>
         </div>
+
         <div className="btn-container">
           <button className="btn" type="submit">
             Submit
