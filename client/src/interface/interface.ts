@@ -13,4 +13,6 @@ export interface WorkOrder {
 
 export interface AddProps {
   handleItemManagementHome: () => void;
+  setPartNumber: (partNumber: string) => void;
+  setCalDate: (calDate: string) => void;
 }
