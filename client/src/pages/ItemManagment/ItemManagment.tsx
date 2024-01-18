@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import AddPartNumber from "../components/AddPartNumber";
 import UpdateTool from "../components/UpdateTool";
 
-const ItemManagment = () => {
+const ItemManagement = () => {
   const [currentOption, setCurrentOption] =
     useState<string>("itemManagementHome");
 
@@ -58,4 +58,4 @@ const ItemManagment = () => {
   );
 };
 
-export default ItemManagment;
+export default ItemManagement;

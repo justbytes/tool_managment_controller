@@ -1,0 +1,8 @@
+.update-tool {
+  display: flex;
+  flex-direction: column;
+  min-width: 47rem;
+}
+.list-container {
+  border: 1px solid white;
+}

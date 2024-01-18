@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Tool, AddProps } from "../../interface/interface";
+import { Tool, AddUpdateProps } from "../../interface/interface";
 
 import "./components.css";
 
-const UpdateTool: React.FC<AddProps> = ({ setPartNumber, setCalDate }) => {
+const UpdateTool: React.FC<AddUpdateProps> = ({
+  setPartNumber,
+  setCalDate,
+}) => {
   const initalPart: Tool = {
     part: "",
     date: "",
