@@ -33,31 +33,33 @@ const AddPartNumber: React.FC<AddProps> = ({ handleItemManagementHome }) => {
       <div className="title">
         <h1>Add Tool</h1>
       </div>
-      <form>
-        <div className="calibration-tools">
-          <div className="calibration-tool-field">
-            <input
-              className="input-tool-pn"
-              type="text"
-              name="part_number"
-              onChange={handlePartNumberChange}
-              placeholder="Enter Calibration Tool Part Number"
-            />
-            <input
-              onChange={handleCalDateChange}
-              type="date"
-              id="cal-date"
-              name="date"
-            />
+      <div className="choice">
+        <form>
+          <div className="calibration-tools">
+            <div className="calibration-tool-field">
+              <input
+                className="input-tool-pn"
+                type="text"
+                name="part_number"
+                onChange={handlePartNumberChange}
+                placeholder="Enter Calibration Tool Part Number"
+              />
+              <input
+                onChange={handleCalDateChange}
+                type="date"
+                id="cal-date"
+                name="date"
+              />
+            </div>
+            <div className="btn-container">
+              <button onClick={handleItemManagementHome}>back</button>
+              <button className="btn" type="submit">
+                Submit
+              </button>
+            </div>
           </div>
-          <div className="btn-container">
-            <button onClick={handleItemManagementHome}>back</button>
-            <button className="btn" type="submit">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 };

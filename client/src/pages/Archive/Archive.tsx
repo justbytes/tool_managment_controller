@@ -9,10 +9,10 @@ const Archive = () => {
           <p>Place for search inputs that search db here...</p>
         </div>
         <div className="btn-container">
+          <a href="#/">Home</a>
           <button className="btn" type="submit">
             Submit
           </button>
-          <a href="#/">Home</a>
         </div>
       </form>
       <div className="recent-activty-container">

@@ -31,21 +31,19 @@ const UpdateTool: React.FC<AddUpdateProps> = ({
     <>
       <form>
         <div className="calibration-tools">
-          <div className="calibration-tool-field">
-            <input
-              className="input-tool-pn"
-              type="text"
-              name="part_number"
-              onChange={handlePartNumberChange}
-              placeholder="Enter Calibration Tool Part Number"
-            />
-            <input
-              onChange={handleCalDateChange}
-              type="date"
-              id="cal-date"
-              name="date"
-            />
-          </div>
+          <input
+            className="input-tool-pn"
+            type="text"
+            name="part_number"
+            onChange={handlePartNumberChange}
+            placeholder="Enter Calibration Tool Part Number"
+          />
+          <input
+            onChange={handleCalDateChange}
+            type="date"
+            id="cal-date"
+            name="date"
+          />
         </div>
       </form>
     </>

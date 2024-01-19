@@ -147,10 +147,10 @@ const CreateWO = () => {
         </div>
 
         <div className="btn-container">
+          <a href="#/">Home</a>
           <button className="btn" type="submit">
             Submit
           </button>
-          <a href="#/">Home</a>
         </div>
       </form>
     </section>

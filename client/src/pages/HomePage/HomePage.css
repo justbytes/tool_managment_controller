@@ -1,15 +1,13 @@
 .option {
   border: 1px solid white;
   border-radius: 10px;
-  display: grid;
-  margin: auto;
-  text-align: center;
-  width: 28%;
-  font-size: 22px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 13%;
+  text-align: center;
+  width: 90%;
+  height: 90%;
   background-color: rgba(240, 248, 255, 0.229);
-  opacity: 120px;
 }
 
 .title {

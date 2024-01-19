@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./ItemManagment.css";
+
 import AddPartNumber from "../components/AddPartNumber";
 import UpdateTool from "../components/UpdateTool";
 
@@ -19,12 +21,14 @@ const ItemManagement = () => {
             <div className="title">
               <h1>Item Management</h1>
             </div>
-            <a className="big-a" onClick={handleUpdateTool}>
-              Update Tool
-            </a>
-            <a className="big-a" onClick={handleAddPartNumber}>
-              Add Tool
-            </a>
+            <div className="choice">
+              <a className="big-a" onClick={handleUpdateTool}>
+                Update Tool
+              </a>
+              <a className="big-a" onClick={handleAddPartNumber}>
+                Add Tool
+              </a>
+            </div>
           </>
         );
       case "addPartNumber":

@@ -2,10 +2,10 @@
   border: 1px solid white;
   border-radius: 5px;
   padding: 3px;
-  width: 80%;
+  width: 95%;
+  min-height: 80%;
   display: flex;
   flex-direction: column;
-  min-height: 40rem;
   background-color: rgba(240, 248, 255, 0.418);
   justify-content: space-between;
 }
@@ -74,14 +74,11 @@
 
 .btn-container {
   background-color: rgba(252, 250, 250, 0.816);
-  flex-shrink: 0;
   border: 1px black solid;
   border-radius: 5px;
   display: flex;
-  margin-top: auto;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
 }
 
 .btn {

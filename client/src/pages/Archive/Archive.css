@@ -9,8 +9,7 @@
   padding: 9px;
 }
 
-.recent-activty-container,
-.archive-form {
+.recent-activty-container {
   border: 1px solid white;
   border-radius: 5px;
   display: flex;
@@ -18,4 +17,16 @@
   background-color: rgba(240, 248, 255, 0.418);
   width: 47%;
   height: 95%;
+}
+
+.archive-form {
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(240, 248, 255, 0.418);
+  width: 47%;
+  height: 95%;
+  padding: 3px;
 }
