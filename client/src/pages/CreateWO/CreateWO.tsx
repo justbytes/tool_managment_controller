@@ -4,8 +4,8 @@ import axios from "axios";
 import "./CreateWO.css";
 
 interface Tool {
-  part: string;
-  date: string;
+  tool_part_number: string;
+  tool_cal_date: string;
 }
 
 interface WorkOrder {
@@ -24,15 +24,15 @@ const CreateWO = () => {
     customer: "",
     order_number: "",
     tools: [
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
-      { part: "", date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
+      { tool_part_number: "", tool_cal_date: "" },
     ],
   };
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
@@ -126,13 +126,17 @@ const CreateWO = () => {
                     className="input-tool-pn"
                     type="text"
                     name="part"
-                    value={tools.part || ""}
-                    onChange={(e) => handleToolChange(e, index, "part")}
+                    value={tools.tool_part_number || ""}
+                    onChange={(e) =>
+                      handleToolChange(e, index, "tool_part_number")
+                    }
                     placeholder="Calibration Tool Part Number"
                   />
                   <input
-                    value={tools.date || ""}
-                    onChange={(e) => handleToolChange(e, index, "date")}
+                    value={tools.tool_cal_date || ""}
+                    onChange={(e) =>
+                      handleToolChange(e, index, "tool_cal_date")
+                    }
                     type="date"
                     id="cal-date"
                     name="cal-date"

@@ -1,25 +1,41 @@
-import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import sequelize from '../config/connection';
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
+import sequelize from "../config/connection";
 
 class Tool extends Model<InferAttributes<Tool>, InferCreationAttributes<Tool>> {
-  declare part: string;
-  declare date: Date;
+  declare part_number: string;
+  declare serial_number: string;
+  declare manufaturer: string;
+  declare cal_date: Date;
 }
 
 Tool.init(
   {
-    part: {
+    part_number: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date: {
+    serial_number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    manufaturer: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    cal_date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
   },
   {
     sequelize,
-    modelName: 'tool',
+    modelName: "tool",
   }
 );
 

@@ -1,6 +1,8 @@
 interface Tool {
-  part: string;
-  date: string;
+  tool_part_number: string;
+  tool_serial_number: string;
+  tool_manufaturer: string;
+  tool_cal_date: string;
 }
 
 export interface WorkOrder {
