@@ -18,7 +18,7 @@ export interface AddProps {
 }
 
 export interface AddUpdateProps {
-  setPartNumber: (partNumber: string) => void;
-  setCalDate: (calDate: string) => void;
+  setTool: (tool: Tool) => void;
   handleItemManagementHome: () => void;
+  tool: Tool;
 }

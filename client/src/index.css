@@ -38,6 +38,19 @@ section {
   background-color: rgba(164, 187, 219, 0.367);
 }
 
+h1 {
+  margin-bottom: 5px;
+  font-size: 28px;
+  color: white;
+}
+
+h2 {
+  margin: 0px;
+  border-bottom: 1px solid;
+  width: 100%;
+  color: white;
+}
+
 a {
   text-decoration: none;
   color: white;
@@ -56,7 +69,7 @@ a:hover {
   box-shadow: 0px 0px 4px 4px rgba(11, 11, 229, 0.455);
 }
 
-input {
+.input {
   padding: 3px;
   margin: 5px;
   width: 11.5rem;

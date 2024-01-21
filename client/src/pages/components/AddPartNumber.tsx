@@ -66,41 +66,42 @@ const AddTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
         <h1>Add Tool</h1>
       </div>
       <div className="choice">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="add-tool-form" onSubmit={handleSubmit}>
           <div className="add-tool">
             <input
-              className="single-input"
+              className="add-tool-input"
               type="text"
               onChange={handlePartNumberChange}
               placeholder="Part Number"
               value={tool.tool_part_number || ""}
             />
             <input
-              className="single-input"
+              className="add-tool-input"
               type="text"
               onChange={handleSerialNumberChange}
               placeholder="Serial Number"
               value={tool.tool_serial_number || ""}
             />
             <input
-              className="single-input"
+              className="add-tool-input"
               type="text"
               onChange={handleManufacturerChange}
               placeholder="Customer Name"
               value={tool.tool_manufacturer || ""}
             />
             <input
+              className="add-tool-input"
               onChange={handleCalDateChange}
               type="date"
               id="cal-date"
               name="date"
             />
-            <div className="btn-container">
-              <button onClick={handleItemManagementHome}>back</button>
-              <button className="btn" type="submit">
-                Submit
-              </button>
-            </div>
+          </div>
+          <div className="btn-container">
+            <button onClick={handleItemManagementHome}>back</button>
+            <button className="btn" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>

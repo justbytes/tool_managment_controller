@@ -5,40 +5,61 @@ import { Tool, AddUpdateProps } from "../../interface/interface";
 
 import "./components.css";
 
-const UpdateTool: React.FC<AddUpdateProps> = ({
-  setPartNumber,
-  setCalDate,
-}) => {
-  const initalPart: Tool = {
-    part: "",
-    date: "",
-  };
-
+const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value: string = (e.target as HTMLInputElement).value;
     console.log("Part Number", value);
-    setPartNumber(value);
+
+    setTool({ ...tool, tool_part_number: value });
+  };
+  const handleSerialNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
+    setTool({
+      ...tool,
+      tool_serial_number: value,
+    });
+  };
+  const handleManufacturerChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
+    setTool({
+      ...tool,
+      tool_manufacturer: value,
+    });
   };
 
   const handleCalDateChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
     console.log("Cal Date", value);
-
-    setCalDate(value);
+    setTool({ ...tool, tool_cal_date: value });
   };
 
   return (
     <>
       <form>
-        <div className="calibration-tools">
+        <div className="add-tool">
           <input
-            className="input-tool-pn"
+            className="add-tool-input"
             type="text"
-            name="part_number"
             onChange={handlePartNumberChange}
-            placeholder="Enter Calibration Tool Part Number"
+            placeholder="Part Number"
+            value={tool.tool_part_number || ""}
           />
           <input
+            className="add-tool-input"
+            type="text"
+            onChange={handleSerialNumberChange}
+            placeholder="Serial Number"
+            value={tool.tool_serial_number || ""}
+          />
+          <input
+            className="add-tool-input"
+            type="text"
+            onChange={handleManufacturerChange}
+            placeholder="Customer Name"
+            value={tool.tool_manufacturer || ""}
+          />
+          <input
+            className="add-tool-input"
             onChange={handleCalDateChange}
             type="date"
             id="cal-date"
