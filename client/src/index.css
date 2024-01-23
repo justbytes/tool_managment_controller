@@ -69,21 +69,19 @@ a:hover {
   box-shadow: 0px 0px 4px 4px rgba(11, 11, 229, 0.455);
 }
 
-.input {
-  padding: 3px;
-  margin: 5px;
+input {
   width: 11.5rem;
   height: 1.5rem;
-  text-align: center;
-  font-size: 16px;
   border-radius: 3px;
   border: solid 1px black;
+  margin: 3px;
 }
 
 .title {
   text-align: center;
   font-size: 28px;
   color: white;
+  width: 100%;
 }
 
 .choice {

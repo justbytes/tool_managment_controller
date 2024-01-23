@@ -50,11 +50,11 @@ const ItemManagement = () => {
         {renderComponent()}
         {currentOption === "itemManagementHome" ? (
           <div className="back-btn">
-            <a href="#/">Home</a>
+            <a href="#/">Back</a>
           </div>
         ) : (
           <div className="back-btn">
-            <a href="#/">Home</a>
+            <a href="#/">Back</a>
           </div>
         )}
       </div>

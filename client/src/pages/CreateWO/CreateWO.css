@@ -1,13 +1,33 @@
-.form {
+.wo-option {
   border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(240, 248, 255, 0.229);
+}
+.wo-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.119);
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+}
+.form {
   border-radius: 5px;
   padding: 3px;
-  width: 95%;
+  width: 98%;
   min-height: 80%;
   display: flex;
   flex-direction: column;
-  background-color: rgba(240, 248, 255, 0.418);
   justify-content: space-between;
+  margin-top: auto;
 }
 
 .left {
@@ -28,6 +48,7 @@
 .tool-div {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 15px;
   min-height: 30rem;
 }
@@ -42,7 +63,7 @@
   align-items: center;
   margin: 5px;
   padding: 5px;
-  width: 42%;
+  width: 48%;
 }
 
 .more-stuff {
@@ -54,7 +75,7 @@
   align-items: center;
   margin: 5px;
   padding: 5px;
-  width: 42%;
+  width: 48%;
 }
 
 .calibration-tools {
@@ -69,7 +90,7 @@
 }
 
 .input-tool-pn {
-  width: 15rem;
+  margin: 5px;
 }
 
 .btn-container {

@@ -93,70 +93,78 @@ const CreateWO = () => {
 
   return (
     <section className="createWO">
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="left">
-          <input
-            className="single-input"
-            type="text"
-            onChange={handlePartNumberChange}
-            placeholder="Part Number"
-            value={workOrder.part_number || ""}
-          />
-          <input
-            className="single-input"
-            type="text"
-            onChange={handleSerialNumberChange}
-            placeholder="Serial Number"
-            value={workOrder.serial_number || ""}
-          />
-          <input
-            className="single-input"
-            type="text"
-            onChange={handleCustomerChange}
-            placeholder="Customer Name"
-            value={workOrder.customer || ""}
-          />
-        </div>
-        <div className="tool-div">
-          <div className="tool-container">
-            {workOrder.tools.map((tools, index) => (
-              <div key={index} className="calibration-tools">
-                <div className="calibration-tool-field">
-                  <input
-                    className="input-tool-pn"
-                    type="text"
-                    name="part"
-                    value={tools.tool_part_number || ""}
-                    onChange={(e) =>
-                      handleToolChange(e, index, "tool_part_number")
-                    }
-                    placeholder="Calibration Tool Part Number"
-                  />
-                  <input
-                    value={tools.tool_cal_date || ""}
-                    onChange={(e) =>
-                      handleToolChange(e, index, "tool_cal_date")
-                    }
-                    type="date"
-                    id="cal-date"
-                    name="cal-date"
-                  />
+      <div className="wo-option">
+        <h1>Create Work Order</h1>
+
+        <div className="wo-choice">
+          <form className="form" onSubmit={handleSubmit}>
+            <div>
+              <div className="left">
+                <input
+                  className="single-input"
+                  type="text"
+                  onChange={handlePartNumberChange}
+                  placeholder="Part Number"
+                  value={workOrder.part_number || ""}
+                />
+                <input
+                  className="single-input"
+                  type="text"
+                  onChange={handleSerialNumberChange}
+                  placeholder="Serial Number"
+                  value={workOrder.serial_number || ""}
+                />
+                <input
+                  className="single-input"
+                  type="text"
+                  onChange={handleCustomerChange}
+                  placeholder="Customer Name"
+                  value={workOrder.customer || ""}
+                />
+              </div>
+              <div className="tool-div">
+                <div className="tool-container">
+                  {workOrder.tools.map((tools, index) => (
+                    <div key={index} className="calibration-tools">
+                      <div className="calibration-tool-field">
+                        <input
+                          className="input-tool-pn"
+                          type="text"
+                          name="part"
+                          value={tools.tool_part_number || ""}
+                          onChange={(e) =>
+                            handleToolChange(e, index, "tool_part_number")
+                          }
+                          placeholder="Calibration Tool Part Number"
+                        />
+                        <input
+                          className="input-tool-pn"
+                          value={tools.tool_cal_date || ""}
+                          onChange={(e) =>
+                            handleToolChange(e, index, "tool_cal_date")
+                          }
+                          type="date"
+                          id="cal-date"
+                          name="cal-date"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="more-stuff">
+                  <h3>More stuff here.</h3>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="more-stuff">
-            <h3>More stuff here.</h3>
-          </div>
+              <button className="btn" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-
-        <div className="btn-container">
-          <a href="#/">Home</a>
-          <button className="btn" type="submit">
-            Submit
-          </button>
+        <div className="back-btn">
+          <a href="#/">Back</a>
         </div>
-      </form>
+      </div>
     </section>
   );
 };

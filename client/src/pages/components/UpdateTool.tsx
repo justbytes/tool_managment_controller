@@ -38,23 +38,31 @@ const UpdateTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
         <form className="search-form">
           <h2>Search</h2>
           <div className="search-div">
-            <input
-              type="search"
-              id="search-input"
-              className="search-input"
-              placeholder={`Enter ` + option}
-            />
-            <Dropdown
-              options={options}
-              label="Search By"
-              onSelect={handleSelect}
-            />
+            <div className="search-input-div">
+              <input
+                type="search"
+                id="search-input"
+                className="search-input"
+                placeholder={`Enter ` + option}
+              />
+              <Dropdown
+                options={options}
+                label="Search By"
+                onSelect={handleSelect}
+              />
+            </div>
           </div>
-
           <button className="btn" type="submit" onClick={handleSearch}>
             Search
           </button>
+          <h2>View tools by:</h2>
+          <div className="find-all">
+            <a className="find-all-option">View All</a>
+            <a className="find-all-option">Part Number</a>
+            <a className="find-all-option">Manufacturer</a>
+          </div>
         </form>
+
         {modal ? (
           <div className="update-choice">
             <UpdateModal
