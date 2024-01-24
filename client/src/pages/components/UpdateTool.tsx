@@ -74,7 +74,6 @@ const UpdateTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
         ) : (
           <div className="update-choice">
             <p>Please search for a tool.</p>
-            <button onClick={handleItemManagementHome}>back</button>
           </div>
         )}
       </div>

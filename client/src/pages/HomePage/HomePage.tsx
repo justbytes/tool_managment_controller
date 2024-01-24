@@ -14,7 +14,7 @@ function HomePage() {
             <a className="big-a" href="#/create-wo">
               Create Work Order
             </a>
-            <a className="big-a" href="#/item-managment">
+            <a className="big-a" href="#/item-management">
               Item Management
             </a>
             <a className="big-a" href="#/archive">

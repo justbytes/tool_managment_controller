@@ -98,7 +98,6 @@ const AddTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
             />
           </div>
           <div className="btn-container">
-            <button onClick={handleItemManagementHome}>back</button>
             <button className="btn" type="submit">
               Submit
             </button>

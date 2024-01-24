@@ -51,6 +51,7 @@ h2 {
   color: white;
 }
 
+.back,
 a {
   text-decoration: none;
   color: white;
@@ -62,6 +63,7 @@ a {
   text-align: center;
   width: 4rem;
 }
+.back:hover,
 a:hover {
   border: 1px solid white;
   color: black;
@@ -96,6 +98,17 @@ input {
   height: 50%;
 }
 
-.back-btn {
+.back-div {
   display: flex;
+}
+
+.back-btn {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.622);
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 5rem;
 }

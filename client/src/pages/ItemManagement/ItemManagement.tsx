@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./ItemManagment.css";
+import "./ItemManagement.css";
 
 import AddPartNumber from "../components/AddPartNumber";
 import UpdateTool from "../components/UpdateTool";
@@ -45,16 +45,18 @@ const ItemManagement = () => {
   };
 
   return (
-    <section className="item-managment">
+    <section className="item-management">
       <div className="option">
         {renderComponent()}
         {currentOption === "itemManagementHome" ? (
-          <div className="back-btn">
+          <div className="back-div">
             <a href="#/">Back</a>
           </div>
         ) : (
-          <div className="back-btn">
-            <a href="#/">Back</a>
+          <div className="back-div">
+            <button className="back-btn" onClick={handleItemManagementHome}>
+              Back
+            </button>
           </div>
         )}
       </div>

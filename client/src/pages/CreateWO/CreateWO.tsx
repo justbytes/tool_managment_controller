@@ -161,7 +161,7 @@ const CreateWO = () => {
             </div>
           </form>
         </div>
-        <div className="back-btn">
+        <div className="back-div">
           <a href="#/">Back</a>
         </div>
       </div>
