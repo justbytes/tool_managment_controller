@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./ItemManagement.css";
 
-import AddPartNumber from "../components/AddPartNumber";
+import AddTool from "../components/AddTool";
 import UpdateTool from "../components/UpdateTool";
 
 const ItemManagement = () => {
@@ -32,13 +32,9 @@ const ItemManagement = () => {
           </>
         );
       case "addPartNumber":
-        return (
-          <AddPartNumber handleItemManagementHome={handleItemManagementHome} />
-        );
+        return <AddTool />;
       case "updateTool":
-        return (
-          <UpdateTool handleItemManagementHome={handleItemManagementHome} />
-        );
+        return <UpdateTool />;
       default:
         return null;
     }

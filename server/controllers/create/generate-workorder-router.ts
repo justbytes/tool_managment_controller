@@ -1,20 +1,17 @@
 import { Router } from "express";
-import { WorkOrder } from "../interface/interface";
+import { WorkOrder } from "../../interface/interface";
 
-import GenerateWONumber from "./GenerateWONumber";
-import DbUpdater from "./DbUpdater";
-import ExcelHandler from "./ExcelHandler";
+import GenerateWONumber from "./utils/GenerateWONumber";
+import DbUpdater from "./utils/DbUpdater";
+import ExcelHandler from "./utils/ExcelHandler";
 
-const mainRouter = Router();
+const generateWorkOrderRouter = Router();
 
 // TODO: Create update WO route
 // Read work order from db print all data to excel or
 // pull it from the file path to allow user to edit.
 
-// Gets work order data creates work order with excel
-// Saves work order data to the db to be archived.
-
-mainRouter.post("/excel", async (req, res) => {
+generateWorkOrderRouter.post("/create-workorder", async (req, res) => {
   const data: WorkOrder = req.body;
 
   try {
@@ -37,4 +34,4 @@ mainRouter.post("/excel", async (req, res) => {
   }
 });
 
-export default mainRouter;
+export default generateWorkOrderRouter;

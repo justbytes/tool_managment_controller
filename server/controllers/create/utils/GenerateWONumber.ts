@@ -1,9 +1,8 @@
-import { WorkOrder } from "../interface/interface";
-import Work_Order from "../models/WorkOrder";
+import { WorkOrder } from "../../../interface/interface";
+import Work_Order from "../../../models/WorkOrder";
 
 const GenerateWONumber = async (data: WorkOrder): Promise<WorkOrder> => {
-  // Generate random work order
-
+  // Generate random work order number
   function generate(): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let result: string = "";
@@ -31,7 +30,6 @@ const GenerateWONumber = async (data: WorkOrder): Promise<WorkOrder> => {
     }
   }
 
-  // Usage example
   checkWONumberExists(result)
     .then((exists) => {
       if (exists) {

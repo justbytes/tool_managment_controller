@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import Dropdown from "./Dropdown";
 import UpdateModal from "./UpdateModal";
 
 import { Tool, AddProps } from "../../interface/interface";
 
 import "./components.css";
-import Dropdown from "./Dropdown";
 
-const UpdateTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
+const UpdateTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
     tool_part_number: "",
     tool_serial_number: "",
@@ -65,11 +65,7 @@ const UpdateTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
 
         {modal ? (
           <div className="update-choice">
-            <UpdateModal
-              setTool={setTool}
-              tool={tool}
-              handleItemManagementHome={handleItemManagementHome}
-            />
+            <UpdateModal setTool={setTool} tool={tool} />
           </div>
         ) : (
           <div className="update-choice">

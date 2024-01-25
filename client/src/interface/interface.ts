@@ -14,11 +14,10 @@ export interface WorkOrder {
 }
 
 export interface AddProps {
-  handleItemManagementHome: () => void;
+  // handleItemManagementHome: () => void;
 }
 
 export interface AddUpdateProps {
   setTool: (tool: Tool) => void;
-  handleItemManagementHome: () => void;
   tool: Tool;
 }

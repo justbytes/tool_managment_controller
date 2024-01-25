@@ -40,9 +40,12 @@ const CreateWO = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(`WORKORDER SUBMIT`);
-    const response = await axios.post("http://localhost:3001/excel", {
-      workOrder,
-    });
+    const response = await axios.post(
+      "http://localhost:3001/generate-workorder",
+      {
+        workOrder,
+      }
+    );
     const data: string = response.data;
 
     console.log(data);

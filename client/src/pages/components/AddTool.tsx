@@ -5,7 +5,7 @@ import { Tool, AddProps } from "../../interface/interface";
 
 import "./components.css";
 
-const AddTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
+const AddTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
     tool_part_number: "",
     tool_serial_number: "",
@@ -97,11 +97,10 @@ const AddTool: React.FC<AddProps> = ({ handleItemManagementHome }) => {
               name="date"
             />
           </div>
-          <div className="btn-container">
-            <button className="btn" type="submit">
-              Submit
-            </button>
-          </div>
+
+          <button className="btn" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </>
