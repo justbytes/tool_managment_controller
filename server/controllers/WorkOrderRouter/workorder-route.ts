@@ -5,13 +5,13 @@ import GenerateWONumber from "./utils/GenerateWONumber";
 import DbUpdater from "./utils/DbUpdater";
 import ExcelHandler from "./utils/ExcelHandler";
 
-const generateWorkOrderRouter = Router();
+const workOrderRoute = Router();
 
 // TODO: Create update WO route
 // Read work order from db print all data to excel or
 // pull it from the file path to allow user to edit.
 
-generateWorkOrderRouter.post("/create-workorder", async (req, res) => {
+workOrderRoute.post("/newWorkOrder", async (req, res) => {
   const data: WorkOrder = req.body;
 
   try {
@@ -34,4 +34,4 @@ generateWorkOrderRouter.post("/create-workorder", async (req, res) => {
   }
 });
 
-export default generateWorkOrderRouter;
+export default workOrderRoute;

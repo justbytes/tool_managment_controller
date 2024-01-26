@@ -1,8 +1,8 @@
 import { Router } from "express";
-import create from "./create";
+import workOrderRouter from "./WorkOrderRouter";
 
 const router = Router();
 
-router.use("/", create);
+router.use("/workOrder", workOrderRouter);
 
 export default router;
