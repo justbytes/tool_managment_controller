@@ -18,12 +18,15 @@ const AddTool: React.FC<AddProps> = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(`ADD TOOL SUBMIT`);
-    // const response = await axios.post("http://localhost:3001/excel", {
-    //   workOrder,
-    // });
-    // const data: string = response.data;
+    const response = await axios.post(
+      "http://localhost:3001/workOrder/add/newTool",
+      {
+        tool,
+      }
+    );
+    const data: string = response.data;
 
-    // console.log(data);
+    console.log(data);
 
     setTool(initalTool);
   };

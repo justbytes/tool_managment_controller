@@ -1,7 +1,7 @@
-import { WorkOrder } from "../../../interface/interface";
+import { WorkOrderInterface } from "../../../interface/interface";
 import Work_Order from "../../../models/WorkOrder";
 
-const DbUpdater = async (data: WorkOrder): Promise<string> => {
+const DbUpdater = async (data: WorkOrderInterface): Promise<string> => {
   console.log("from dbupdater:", data);
 
   try {

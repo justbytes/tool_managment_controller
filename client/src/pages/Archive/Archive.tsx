@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
+import { Tool } from "../../interface/interface";
 import Dropdown from "../components/Dropdown";
 
 import "./Archive.css";
@@ -8,6 +10,24 @@ const Archive = () => {
   const [option, setOption] = useState<string>("Part Number");
   const [searchResults, setSearchResults] = useState<boolean>(false);
   const options = ["Part Number", "Serial Number", "Manufacturer"];
+
+  useEffect(() => {
+    // Define the async function
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/retrieve/get/allWorkOrders"
+        );
+        const data: Tool = response.data;
+        console.log(data);
+      } catch (error) {
+        // Handle the error
+        console.error("Error fetching data: ", error);
+      }
+    };
+    fetchData();
+  }),
+    [];
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

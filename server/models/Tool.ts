@@ -6,35 +6,52 @@ import {
   CreationOptional,
 } from "sequelize";
 import sequelize from "../config/connection";
+import { CreateContextOptions } from "vm";
 
 class Tool extends Model<InferAttributes<Tool>, InferCreationAttributes<Tool>> {
-  declare part_number: string;
-  declare serial_number: string;
-  declare manufaturer: string;
-  declare cal_date: Date;
+  declare id: CreationOptional<number>;
+  declare tool_part_number: string;
+  declare tool_serial_number: string;
+  declare tool_manufacturer: string;
+  declare tool_cal_date: Date;
+  declare date_created: CreationOptional<Date>;
 }
 
 Tool.init(
   {
-    part_number: {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    tool_part_number: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    serial_number: {
+    tool_serial_number: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    manufaturer: {
+    tool_manufacturer: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    cal_date: {
+    tool_cal_date: {
       type: DataTypes.DATE,
       allowNull: false,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
     sequelize,
+    timestamps: true,
+    freezeTableName: true,
+    underscored: true,
     modelName: "tool",
   }
 );

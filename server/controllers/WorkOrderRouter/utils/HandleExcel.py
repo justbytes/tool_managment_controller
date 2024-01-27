@@ -25,8 +25,8 @@ class WorkOrder:
 
         row = 6
         for tool in tools:
-            worksheet['A' + str(row)].value = tool['part']
-            worksheet['C' + str(row)].value = tool['date']
+            worksheet['A' + str(row)].value = tool['tool_part_number']
+            worksheet['C' + str(row)].value = tool['tool_cal_date']
 
             row += 1
     

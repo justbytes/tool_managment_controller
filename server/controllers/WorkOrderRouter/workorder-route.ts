@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { WorkOrder } from "../../interface/interface";
+import { WorkOrderInterface, ToolInterface } from "../../interface/interface";
 
 import GenerateWONumber from "./utils/GenerateWONumber";
 import DbUpdater from "./utils/DbUpdater";
 import ExcelHandler from "./utils/ExcelHandler";
+import Tool from "../../models/Tool";
 
 const workOrderRoute = Router();
 
@@ -12,7 +13,7 @@ const workOrderRoute = Router();
 // pull it from the file path to allow user to edit.
 
 workOrderRoute.post("/newWorkOrder", async (req, res) => {
-  const data: WorkOrder = req.body;
+  const data: WorkOrderInterface = req.body;
 
   try {
     // Generate the order number for the work order and asign it to the object
@@ -31,6 +32,17 @@ workOrderRoute.post("/newWorkOrder", async (req, res) => {
   } catch (error) {
     console.error("Error reading Excel file:", error);
     res.status(500).send("Error processing Excel file");
+  }
+});
+
+workOrderRoute.post("/newTool", async (req, res) => {
+  const data: ToolInterface = req.body;
+  console.log(data.tool);
+  try {
+    const newTool = await Tool.create(data.tool);
+    res.json("Tool was added to DB");
+  } catch (error) {
+    console.error("Error when adding a new Tool:", error);
   }
 });
 

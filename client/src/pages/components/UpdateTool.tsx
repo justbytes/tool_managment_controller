@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Dropdown from "./Dropdown";
@@ -19,6 +19,25 @@ const UpdateTool: React.FC<AddProps> = () => {
   const [tool, setTool] = useState<Tool>(initalTool);
   const [option, setOption] = useState<string>("Part Number");
   const options = ["Part Number", "Serial Number", "Manufacturer"];
+
+  useEffect(() => {
+    // Define the async function
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/retrieve/get/allTools"
+        );
+        const data: Tool = response.data;
+        console.log(data);
+      } catch (error) {
+        // Handle the error
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    // Call the async function
+    fetchData();
+  }, []);
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

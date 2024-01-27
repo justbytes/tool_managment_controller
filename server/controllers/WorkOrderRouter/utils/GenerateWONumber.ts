@@ -1,7 +1,9 @@
-import { WorkOrder } from "../../../interface/interface";
+import { WorkOrderInterface } from "../../../interface/interface";
 import Work_Order from "../../../models/WorkOrder";
 
-const GenerateWONumber = async (data: WorkOrder): Promise<WorkOrder> => {
+const GenerateWONumber = async (
+  data: WorkOrderInterface
+): Promise<WorkOrderInterface> => {
   // Generate random work order number
   function generate(): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -60,7 +62,7 @@ const GenerateWONumber = async (data: WorkOrder): Promise<WorkOrder> => {
 
   const orderNumber = `${result}-${day}`;
 
-  const updatedData: WorkOrder = {
+  const updatedData: WorkOrderInterface = {
     ...data,
     workOrder: {
       ...data.workOrder,

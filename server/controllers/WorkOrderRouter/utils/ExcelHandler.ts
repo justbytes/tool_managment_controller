@@ -1,9 +1,9 @@
 import * as childProcess from "child_process";
 import * as path from "path";
 
-import { WorkOrder } from "../../../interface/interface";
+import { WorkOrderInterface } from "../../../interface/interface";
 
-const ExcelHandler = async (data: WorkOrder): Promise<string> => {
+const ExcelHandler = async (data: WorkOrderInterface): Promise<string> => {
   const filePath = path.join(__dirname, "HandleExcel.py");
 
   console.log("Data sent to python", data);
