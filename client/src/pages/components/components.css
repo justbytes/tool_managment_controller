@@ -122,3 +122,16 @@
 .update-title {
   width: 100%;
 }
+
+.tool-card {
+  width: 100%;
+  border: 1px solid;
+  height: 100%;
+}
+
+.tool-list {
+  border: 1px solid;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}

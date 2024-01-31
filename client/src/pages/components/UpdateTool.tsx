@@ -10,6 +10,7 @@ import "./components.css";
 
 const UpdateTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
+    id: 0,
     tool_part_number: "",
     tool_serial_number: "",
     tool_manufacturer: "",
@@ -17,6 +18,7 @@ const UpdateTool: React.FC<AddProps> = () => {
   };
   const [modal, setModal] = useState<boolean>(false);
   const [tool, setTool] = useState<Tool>(initalTool);
+  const [tools, setTools] = useState<Tool[]>([]);
   const [option, setOption] = useState<string>("Part Number");
   const options = ["Part Number", "Serial Number", "Manufacturer"];
 
@@ -24,11 +26,12 @@ const UpdateTool: React.FC<AddProps> = () => {
     // Define the async function
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<Tool[]>(
           "http://localhost:3001/retrieve/get/allTools"
         );
-        const data: Tool = response.data;
-        console.log(data);
+        const data = response.data;
+        console.log("this is from the useEffect:", data);
+        setTools(data);
       } catch (error) {
         // Handle the error
         console.error("Error fetching data: ", error);
@@ -41,6 +44,8 @@ const UpdateTool: React.FC<AddProps> = () => {
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(tools);
+
     setModal(true);
   };
 
@@ -88,7 +93,18 @@ const UpdateTool: React.FC<AddProps> = () => {
           </div>
         ) : (
           <div className="update-choice">
-            <p>Please search for a tool.</p>
+            <div className="tool-card">
+              {tools.map((tool) => (
+                <div className="tool-list" key={tool.id}>
+                  <p>ID: {tool.id}</p>
+                  <p>{tool.tool_part_number}</p>
+                  <p>{tool.tool_serial_number}</p>
+                  <p>{tool.tool_manufacturer}</p>
+                  <p>{tool.tool_cal_date}</p>
+                  <p></p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
