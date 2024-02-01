@@ -21,4 +21,5 @@ export interface AddProps {
 export interface AddUpdateProps {
   setTool: (tool: Tool) => void;
   tool: Tool;
+  // workOrder: WorkOrder;
 }

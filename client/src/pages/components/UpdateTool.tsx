@@ -54,6 +54,14 @@ const UpdateTool: React.FC<AddProps> = () => {
     setOption(value);
   };
 
+  const formatDate = (tool_date: string): string => {
+    const date = new Date(tool_date);
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${month}-${day}-${year}`;
+  };
+
   return (
     <>
       <h1>Update Tool</h1>
@@ -96,12 +104,46 @@ const UpdateTool: React.FC<AddProps> = () => {
             <div className="tool-card">
               {tools.map((tool) => (
                 <div className="tool-list" key={tool.id}>
-                  <p>ID: {tool.id}</p>
-                  <p>{tool.tool_part_number}</p>
-                  <p>{tool.tool_serial_number}</p>
-                  <p>{tool.tool_manufacturer}</p>
-                  <p>{tool.tool_cal_date}</p>
-                  <p></p>
+                  <div className="tool-list-container">
+                    <div className="description">
+                      <p className="t">ID</p>
+                    </div>
+                    <div className="description-value">
+                      <p className="t">{tool.id}</p>
+                    </div>
+                  </div>
+                  <div className="tool-list-container">
+                    <div className="description">
+                      <p className="t">Part Number</p>
+                    </div>
+                    <div className="description-value">
+                      <p className="t">{tool.tool_part_number}</p>
+                    </div>
+                  </div>
+                  <div className="tool-list-container">
+                    <div className="description">
+                      <p className="t">Serial Number</p>
+                    </div>
+                    <div className="description-value">
+                      <p className="t">{tool.tool_serial_number}</p>
+                    </div>
+                  </div>
+                  <div className="tool-list-container">
+                    <div className="description">
+                      <p className="t">Manufacturer</p>
+                    </div>
+                    <div className="description-value">
+                      <p className="t">{tool.tool_manufacturer}</p>
+                    </div>
+                  </div>
+                  <div className="tool-list-container">
+                    <div className="description">
+                      <p className="t">Cal Due Date</p>
+                    </div>
+                    <div className="description-value">
+                      <p className="t">{formatDate(tool.tool_cal_date)}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

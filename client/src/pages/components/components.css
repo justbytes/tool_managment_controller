@@ -125,13 +125,45 @@
 
 .tool-card {
   width: 100%;
-  border: 1px solid;
   height: 100%;
 }
 
 .tool-list {
   border: 1px solid;
-  margin: 5px;
+  border-radius: 5px;
+  background-color: rgba(252, 250, 250, 0.816);
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  margin: 5px;
+}
+
+.tool-list-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3px;
+  border: 1px solid;
+  border-radius: 5px 0px 0px 5px;
+  align-items: center;
+  height: 35%;
+}
+
+.description {
+  border-right: 1px solid;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: skyblue;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.description-value {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.t {
+  margin: 5px;
 }
