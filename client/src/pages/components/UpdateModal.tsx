@@ -3,15 +3,18 @@ import axios from "axios";
 
 import { Tool, AddUpdateProps } from "../../interface/interface";
 
+import { inputDate } from "./FormatDate";
+
 import "./components.css";
 
-const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
+const UpdateModal: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
+  console.log("From update modal tool = ", tool);
+
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value: string = (e.target as HTMLInputElement).value;
-    console.log("Part Number", value);
-
     setTool({ ...tool, tool_part_number: value });
   };
+
   const handleSerialNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
     setTool({
@@ -19,6 +22,7 @@ const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
       tool_serial_number: value,
     });
   };
+
   const handleManufacturerChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
     setTool({
@@ -35,7 +39,7 @@ const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
 
   return (
     <>
-      <form>
+      <form className="update-form">
         <div className="add-tool">
           <input
             className="add-tool-input"
@@ -64,6 +68,7 @@ const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
             type="date"
             id="cal-date"
             name="date"
+            value={inputDate(tool.tool_cal_date) || ""}
           />
         </div>
       </form>
@@ -71,4 +76,4 @@ const UpdateTool: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
   );
 };
 
-export default UpdateTool;
+export default UpdateModal;

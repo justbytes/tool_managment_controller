@@ -95,60 +95,71 @@ const UpdateTool: React.FC<AddProps> = () => {
           </div>
         </form>
 
-        {modal ? (
-          <div className="update-choice">
-            <UpdateModal setTool={setTool} tool={tool} />
-          </div>
-        ) : (
-          <div className="update-choice">
-            <div className="tool-card">
-              {tools.map((tool) => (
-                <div className="tool-list" key={tool.id}>
-                  <div className="tool-list-container">
-                    <div className="description">
-                      <p className="t">ID</p>
-                    </div>
-                    <div className="description-value">
-                      <p className="t">{tool.id}</p>
-                    </div>
-                  </div>
-                  <div className="tool-list-container">
-                    <div className="description">
-                      <p className="t">Part Number</p>
-                    </div>
-                    <div className="description-value">
-                      <p className="t">{tool.tool_part_number}</p>
-                    </div>
-                  </div>
-                  <div className="tool-list-container">
-                    <div className="description">
-                      <p className="t">Serial Number</p>
-                    </div>
-                    <div className="description-value">
-                      <p className="t">{tool.tool_serial_number}</p>
-                    </div>
-                  </div>
-                  <div className="tool-list-container">
-                    <div className="description">
-                      <p className="t">Manufacturer</p>
-                    </div>
-                    <div className="description-value">
-                      <p className="t">{tool.tool_manufacturer}</p>
-                    </div>
-                  </div>
-                  <div className="tool-list-container">
-                    <div className="description">
-                      <p className="t">Cal Due Date</p>
-                    </div>
-                    <div className="description-value">
-                      <p className="t">{formatDate(tool.tool_cal_date)}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+        {modal && (
+          <div className="modal-backdrop" onClick={() => setModal(false)}>
+            <div
+              className="modal modal-active"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <UpdateModal setTool={setTool} tool={tool} />
             </div>
           </div>
         )}
+        <div className="update-choice">
+          <div className="tool-card">
+            {tools.map((tool) => (
+              <div
+                className="tool-list"
+                onClick={() => {
+                  setTool(tool);
+                  setModal(true);
+                }}
+                key={tool.id}
+              >
+                <div className="tool-list-container">
+                  <div className="description">
+                    <p className="t">ID</p>
+                  </div>
+                  <div className="description-value">
+                    <p className="t">{tool.id}</p>
+                  </div>
+                </div>
+                <div className="tool-list-container">
+                  <div className="description">
+                    <p className="t">Part Number</p>
+                  </div>
+                  <div className="description-value">
+                    <p className="t">{tool.tool_part_number}</p>
+                  </div>
+                </div>
+                <div className="tool-list-container">
+                  <div className="description">
+                    <p className="t">Serial Number</p>
+                  </div>
+                  <div className="description-value">
+                    <p className="t">{tool.tool_serial_number}</p>
+                  </div>
+                </div>
+                <div className="tool-list-container">
+                  <div className="description">
+                    <p className="t">Manufacturer</p>
+                  </div>
+                  <div className="description-value">
+                    <p className="t">{tool.tool_manufacturer}</p>
+                  </div>
+                </div>
+                <div className="tool-list-container">
+                  <div className="description">
+                    <p className="t">Cal Due Date</p>
+                  </div>
+                  <div className="description-value">
+                    <p className="t">{formatDate(tool.tool_cal_date)}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

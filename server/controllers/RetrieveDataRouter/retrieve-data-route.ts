@@ -4,6 +4,7 @@ import { ToolInterface } from "../../interface/interface";
 
 import Tool from "../../models/Tool";
 import Work_Order from "../../models/WorkOrder";
+import { log } from "console";
 
 const retrieveDataRoute = Router();
 
@@ -23,10 +24,19 @@ retrieveDataRoute.get("/allWorkOrders", async (req, res) => {
   console.log("Getting all Work Orders");
 
   try {
-    const workOrderData = await Work_Order.findAll();
+    const workOrderData = await Work_Order.findAll({
+      include: [
+        {
+          model: Tool,
+          as: "tool",
+        },
+      ],
+    });
+    console.log(workOrderData);
     const workorders = workOrderData.map((workorder) =>
       workorder.get({ plain: true })
     );
+    console.log("route workorders going to client:", workorders);
     res.json(workorders);
   } catch (error) {
     res.send(error);

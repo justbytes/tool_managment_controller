@@ -2,7 +2,7 @@ import { WorkOrderInterface } from "../../../interface/interface";
 import Work_Order from "../../../models/WorkOrder";
 
 const DbUpdater = async (data: WorkOrderInterface): Promise<string> => {
-  console.log("from dbupdater:", data);
+  console.log("from dbupdater check for tools here:", data);
 
   try {
     // Basic validation to ensure required fields are present

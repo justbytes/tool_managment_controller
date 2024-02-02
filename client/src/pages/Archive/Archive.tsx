@@ -4,6 +4,7 @@ import axios from "axios";
 import { AddProps } from "../../interface/interface";
 
 import Dropdown from "../components/Dropdown";
+import ToolsModal from "../components/ToolsModal";
 
 import "./Archive.css";
 
@@ -44,7 +45,7 @@ const Archive: React.FC<AddProps> = () => {
   const [option, setOption] = useState<string>("Part Number");
   const [searchResults, setSearchResults] = useState<boolean>(false);
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
-  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([]);
+  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([initialWorkOrder]);
   const options = ["Part Number", "Serial Number", "Customer"];
 
   useEffect(() => {
@@ -104,11 +105,10 @@ const Archive: React.FC<AddProps> = () => {
               <button className="btn" type="submit" onClick={handleSearch}>
                 Search
               </button>
-              <h2>View tools by:</h2>
+              <h2>View Work Orders by:</h2>
               <div className="find-all">
                 <a className="find-all-option">View All</a>
-                <a className="find-all-option">Part Number</a>
-                <a className="find-all-option">Manufacturer</a>
+                <a className="find-all-option">Customer</a>
               </div>
             </form>
 
@@ -118,53 +118,7 @@ const Archive: React.FC<AddProps> = () => {
               </div>
             ) : (
               <div className="update-choice">
-                <div className="tool-card">
-                  {workOrders.map((workOrder) => (
-                    <div className="tool-list" key={workOrder.id}>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">WO</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{workOrder.order_number}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Part Number</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{workOrder.part_number}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Serial Number</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{workOrder.serial_number}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Customer</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{workOrder.customer}</p>
-                        </div>
-                      </div>
-                      {/* This needs to be changed to display the tools used.  */}
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Tools used</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{workOrder.id}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="tool-card"></div>
               </div>
             )}
           </div>

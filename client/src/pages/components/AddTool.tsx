@@ -7,6 +7,7 @@ import "./components.css";
 
 const AddTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
+    id: 0,
     tool_part_number: "",
     tool_serial_number: "",
     tool_manufacturer: "",
