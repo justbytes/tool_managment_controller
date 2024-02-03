@@ -7,7 +7,12 @@ import { inputDate } from "./FormatDate";
 
 import "./components.css";
 
-const UpdateModal: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
+const UpdateModal: React.FC<AddUpdateProps> = ({
+  setTool,
+  setModal,
+  tool,
+  refreshData,
+}) => {
   console.log("From update modal tool = ", tool);
 
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -37,9 +42,29 @@ const UpdateModal: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
     setTool({ ...tool, tool_cal_date: value });
   };
 
+  const updateToolSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("updating db");
+    try {
+      const response = await axios.put(
+        "http://localhost:3001/put/update/updateTool",
+        {
+          tool,
+        }
+      );
+      const data: string = response.data;
+      console.log("from update tool route client side", data);
+    } catch (error) {
+      // Handle the error
+      console.error("Error fetching data: ", error);
+    }
+    refreshData();
+    setModal(false);
+  };
+
   return (
     <>
-      <form className="update-form">
+      <form className="update-form" onSubmit={updateToolSubmit}>
         <div className="add-tool">
           <input
             className="add-tool-input"
@@ -70,6 +95,9 @@ const UpdateModal: React.FC<AddUpdateProps> = ({ setTool, tool }) => {
             name="date"
             value={inputDate(tool.tool_cal_date) || ""}
           />
+          <button className="btn" type="submit">
+            Update
+          </button>
         </div>
       </form>
     </>

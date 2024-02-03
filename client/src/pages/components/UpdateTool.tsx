@@ -22,6 +22,20 @@ const UpdateTool: React.FC<AddProps> = () => {
   const [option, setOption] = useState<string>("Part Number");
   const options = ["Part Number", "Serial Number", "Manufacturer"];
 
+  const refreshData = async () => {
+    try {
+      const response = await axios.get<Tool[]>(
+        "http://localhost:3001/retrieve/get/allTools"
+      );
+      const data = response.data;
+      console.log("this is from the useEffect:", data);
+      setTools(data);
+    } catch (error) {
+      // Handle the error
+      console.error("Error fetching data: ", error);
+    }
+  };
+
   useEffect(() => {
     // Define the async function
     const fetchData = async () => {
@@ -101,7 +115,12 @@ const UpdateTool: React.FC<AddProps> = () => {
               className="modal modal-active"
               onClick={(e) => e.stopPropagation()}
             >
-              <UpdateModal setTool={setTool} tool={tool} />
+              <UpdateModal
+                setTool={setTool}
+                setModal={setModal}
+                tool={tool}
+                refreshData={refreshData}
+              />
             </div>
           </div>
         )}

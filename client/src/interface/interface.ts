@@ -16,10 +16,12 @@ export interface WorkOrder {
 
 export interface AddProps {
   // handleItemManagementHome: () => void;
+  setMoal: (value: boolean) => void;
 }
 
 export interface AddUpdateProps {
   setTool: (tool: Tool) => void;
+  setModal: (value: boolean) => void;
+  refreshData: () => void;
   tool: Tool;
-  // workOrder: WorkOrder;
 }
