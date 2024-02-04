@@ -17,9 +17,12 @@ const UpdateTool: React.FC<AddProps> = () => {
     tool_cal_date: "",
   };
   const [modal, setModal] = useState<boolean>(false);
+  const [customSearch, setCustomSearch] = useState<boolean>(false);
   const [tool, setTool] = useState<Tool>(initalTool);
   const [tools, setTools] = useState<Tool[]>([]);
   const [option, setOption] = useState<string>("Part Number");
+  const [searchInput, setSearchInput] = useState<string>("");
+
   const options = ["Part Number", "Serial Number", "Manufacturer"];
 
   const refreshData = async () => {
@@ -56,16 +59,43 @@ const UpdateTool: React.FC<AddProps> = () => {
     fetchData();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(tools);
+    let filteredTools = tools;
 
-    setModal(true);
+    if (option === "Part Number") {
+      filteredTools = tools.filter((tool) =>
+        tool.tool_part_number
+          .toLowerCase()
+          .startsWith(searchInput.toLowerCase())
+      );
+    } else if (option === "Serial Number") {
+      filteredTools = tools.filter((tool) =>
+        tool.tool_serial_number
+          .toLowerCase()
+          .startsWith(searchInput.toLowerCase())
+      );
+    } else if (option === "Manufacturer") {
+      filteredTools = tools.filter((tool) =>
+        tool.tool_manufacturer
+          .toLowerCase()
+          .startsWith(searchInput.toLowerCase())
+      );
+    }
+
+    setTools(filteredTools);
   };
 
   const handleSelect = (value: string) => {
     console.log("Selected:", value);
     setOption(value);
+
+    setSearchInput("");
+    refreshData();
   };
 
   const formatDate = (tool_date: string): string => {
@@ -90,6 +120,8 @@ const UpdateTool: React.FC<AddProps> = () => {
                 id="search-input"
                 className="search-input"
                 placeholder={`Enter ` + option}
+                value={searchInput || ""}
+                onChange={handleInputChange}
               />
               <Dropdown
                 options={options}
