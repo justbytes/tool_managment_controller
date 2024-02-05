@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { AddProps } from "../../interface/interface";
+import { AddWOUpdateProps } from "../../interface/interface";
 
 import Dropdown from "../components/Dropdown";
-import ToolsModal from "../components/ToolsModal";
+import UpdateWorkOrderModal from "../components/WorkOrderModal";
 
 import "./Archive.css";
 
@@ -25,7 +25,7 @@ interface WorkOrder {
   tools: Tool[];
 }
 
-const Archive: React.FC<AddProps> = () => {
+const Archive: React.FC<AddWOUpdateProps> = () => {
   const initialWorkOrder: WorkOrder = {
     id: 0,
     part_number: "",
@@ -43,10 +43,26 @@ const Archive: React.FC<AddProps> = () => {
     ],
   };
   const [option, setOption] = useState<string>("Part Number");
-  const [searchResults, setSearchResults] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
-  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([initialWorkOrder]);
+  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([]);
+  const [searchInput, setSearchInput] = useState<string>("");
+
   const options = ["Part Number", "Serial Number", "Customer"];
+
+  const refreshData = async () => {
+    try {
+      const response = await axios.get<WorkOrder[]>(
+        "http://localhost:3001/retrieve/get/allWorkOrders"
+      );
+      const data = response.data;
+      console.log("this is from the useEffect:", data);
+      setWorkOrders(data);
+    } catch (error) {
+      // Handle the error
+      console.error("Error fetching data: ", error);
+    }
+  };
 
   useEffect(() => {
     // Define the async function
@@ -68,10 +84,33 @@ const Archive: React.FC<AddProps> = () => {
 
   console.log(workOrders);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Searching...");
-    setSearchResults(true);
+    let filteredWorkOrders = workOrders;
+
+    if (option === "Part Number") {
+      filteredWorkOrders = workOrders.filter((workorder) =>
+        workorder.part_number
+          .toLowerCase()
+          .startsWith(searchInput.toLowerCase())
+      );
+    } else if (option === "Serial Number") {
+      filteredWorkOrders = workOrders.filter((workorder) =>
+        workorder.serial_number
+          .toLowerCase()
+          .startsWith(searchInput.toLowerCase())
+      );
+    } else if (option === "Customer") {
+      filteredWorkOrders = workOrders.filter((workorder) =>
+        workorder.customer.toLowerCase().startsWith(searchInput.toLowerCase())
+      );
+    }
+
+    setWorkOrders(filteredWorkOrders);
   };
 
   const handleSelect = (value: string) => {
@@ -94,6 +133,8 @@ const Archive: React.FC<AddProps> = () => {
                     id="search-input"
                     className="search-input"
                     placeholder={`Enter ` + option}
+                    value={searchInput || ""}
+                    onChange={handleInputChange}
                   />
                   <Dropdown
                     options={options}
@@ -112,15 +153,76 @@ const Archive: React.FC<AddProps> = () => {
               </div>
             </form>
 
-            {searchResults ? (
-              <div className="update-choice">
-                <p>Specific WO Search result here</p>
-              </div>
-            ) : (
-              <div className="update-choice">
-                <div className="tool-card"></div>
+            {modal && (
+              <div className="modal-backdrop" onClick={() => setModal(false)}>
+                <div
+                  className="modal modal-active"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <UpdateWorkOrderModal
+                    setWorkOrder={setWorkOrder}
+                    setModal={setModal}
+                    workOrder={workOrder}
+                    refreshData={refreshData}
+                  />
+                </div>
               </div>
             )}
+            <div className="update-choice">
+              <div className="tool-card">
+                {workOrders.map((workorder) => (
+                  <div
+                    className="tool-list"
+                    onClick={() => {
+                      setWorkOrder(workorder);
+                      setModal(true);
+                    }}
+                    key={workorder.id}
+                  >
+                    <div className="tool-list-container">
+                      <div className="description">
+                        <p className="t">ID</p>
+                      </div>
+                      <div className="description-value">
+                        <p className="t">{workorder.id}</p>
+                      </div>
+                    </div>
+                    <div className="tool-list-container">
+                      <div className="description">
+                        <p className="t">Part Number</p>
+                      </div>
+                      <div className="description-value">
+                        <p className="t">{workorder.part_number}</p>
+                      </div>
+                    </div>
+                    <div className="tool-list-container">
+                      <div className="description">
+                        <p className="t">Serial Number</p>
+                      </div>
+                      <div className="description-value">
+                        <p className="t">{workorder.serial_number}</p>
+                      </div>
+                    </div>
+                    <div className="tool-list-container">
+                      <div className="description">
+                        <p className="t">Customer</p>
+                      </div>
+                      <div className="description-value">
+                        <p className="t">{workorder.customer}</p>
+                      </div>
+                    </div>
+                    <div className="tool-list-container">
+                      <div className="description">
+                        <p className="t">Date Created</p>
+                      </div>
+                      {/* <div className="description-value">
+                        <p className="t">{formatDate(tool.tool_cal_date)}</p>
+                      </div> */}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </>
         <div className="back-div">

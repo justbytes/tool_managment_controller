@@ -7,6 +7,7 @@ export interface Tool {
 }
 
 export interface WorkOrder {
+  id: number;
   part_number: string;
   serial_number: string;
   customer: string;
@@ -17,6 +18,9 @@ export interface WorkOrder {
 export interface AddProps {
   // handleItemManagementHome: () => void;
   setMoal: (value: boolean) => void;
+  setWorkOrder: (workOrder: WorkOrder) => void;
+  refreshData: () => void;
+  // workOrder: WorkOrder;
 }
 
 export interface AddUpdateProps {
@@ -24,4 +28,11 @@ export interface AddUpdateProps {
   setModal: (value: boolean) => void;
   refreshData: () => void;
   tool: Tool;
+}
+
+export interface AddWOUpdateProps {
+  setWorkOrder: (workOrder: WorkOrder) => void;
+  setModal: (value: boolean) => void;
+  refreshData: () => void;
+  workOrder: WorkOrder;
 }

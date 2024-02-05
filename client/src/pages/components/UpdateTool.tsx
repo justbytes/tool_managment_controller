@@ -17,7 +17,6 @@ const UpdateTool: React.FC<AddProps> = () => {
     tool_cal_date: "",
   };
   const [modal, setModal] = useState<boolean>(false);
-  const [customSearch, setCustomSearch] = useState<boolean>(false);
   const [tool, setTool] = useState<Tool>(initalTool);
   const [tools, setTools] = useState<Tool[]>([]);
   const [option, setOption] = useState<string>("Part Number");
@@ -93,7 +92,6 @@ const UpdateTool: React.FC<AddProps> = () => {
   const handleSelect = (value: string) => {
     console.log("Selected:", value);
     setOption(value);
-
     setSearchInput("");
     refreshData();
   };

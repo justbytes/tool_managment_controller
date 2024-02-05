@@ -24,14 +24,7 @@ retrieveDataRoute.get("/allWorkOrders", async (req, res) => {
   console.log("Getting all Work Orders");
 
   try {
-    const workOrderData = await Work_Order.findAll({
-      include: [
-        {
-          model: Tool,
-          as: "tool",
-        },
-      ],
-    });
+    const workOrderData = await Work_Order.findAll();
     console.log(workOrderData);
     const workorders = workOrderData.map((workorder) =>
       workorder.get({ plain: true })
