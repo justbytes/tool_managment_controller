@@ -10,6 +10,7 @@ import { CreateContextOptions } from "vm";
 
 class Tool extends Model<InferAttributes<Tool>, InferCreationAttributes<Tool>> {
   declare id: CreationOptional<number>;
+  declare assosiated_work_order: number;
   declare tool_part_number: string;
   declare tool_serial_number: string;
   declare tool_manufacturer: string;
@@ -24,6 +25,10 @@ Tool.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    assosiated_work_order: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     tool_part_number: {
       type: DataTypes.STRING,

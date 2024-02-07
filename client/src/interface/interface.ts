@@ -1,5 +1,6 @@
 export interface Tool {
   id: number;
+  assosiated_work_order: number;
   tool_part_number: string;
   tool_serial_number: string;
   tool_manufacturer: string;

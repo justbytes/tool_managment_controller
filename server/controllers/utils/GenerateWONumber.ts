@@ -1,5 +1,5 @@
-import { WorkOrderInterface } from "../../../interface/interface";
-import Work_Order from "../../../models/WorkOrder";
+import { WorkOrderInterface } from "../../interface/interface";
+import Work_Order from "../../models/WorkOrder";
 
 const GenerateWONumber = async (
   data: WorkOrderInterface

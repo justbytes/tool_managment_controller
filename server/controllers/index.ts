@@ -1,12 +1,11 @@
 import { Router } from "express";
-import workOrderRouter from "./WorkOrderRouter";
-import retrieveDataRouter from "./RetrieveDataRouter";
-import updateRouter from "./UpdateRouter";
-
+import createRoute from "./Routes/create-route";
+import getRoute from "./Routes/get-route";
+import updateRoute from "./Routes/update-route";
 const router = Router();
 
-router.use("/workOrder", workOrderRouter);
-router.use("/retrieve", retrieveDataRouter);
-router.use("/put", updateRouter);
+router.use("/create", createRoute);
+router.use("/get", getRoute);
+router.use("/update", updateRoute);
 
 export default router;

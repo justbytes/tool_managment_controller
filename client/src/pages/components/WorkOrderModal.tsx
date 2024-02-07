@@ -48,7 +48,7 @@ const UpdateWorkOrderModal: React.FC<AddWOUpdateProps> = ({
     console.log("updating db");
     try {
       const response = await axios.put(
-        "http://localhost:3001/put/update/updateWorkOrder",
+        "http://localhost:3001/update/WorkOrder",
         {
           workOrder,
         }

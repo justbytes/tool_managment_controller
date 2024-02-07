@@ -41,7 +41,7 @@ const CreateWO = () => {
     e.preventDefault();
     console.log(`WORKORDER SUBMIT`, workOrder);
     const response = await axios.post(
-      "http://localhost:3001/workOrder/add/newWorkOrder",
+      "http://localhost:3001/create/WorkOrder",
       {
         workOrder,
       }

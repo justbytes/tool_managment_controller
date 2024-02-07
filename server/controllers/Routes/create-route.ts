@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { WorkOrderInterface, ToolInterface } from "../../interface/interface";
 
-import GenerateWONumber from "./utils/GenerateWONumber";
-import DbUpdater from "./utils/DbUpdater";
-import ExcelHandler from "./utils/ExcelHandler";
+import GenerateWONumber from "../utils/GenerateWONumber";
+import DbUpdater from "../utils/DbUpdater";
+import ExcelHandler from "../utils/ExcelHandler";
 import Tool from "../../models/Tool";
 
 const workOrderRoute = Router();
@@ -12,7 +12,7 @@ const workOrderRoute = Router();
 // Read work order from db print all data to excel or
 // pull it from the file path to allow user to edit.
 
-workOrderRoute.post("/newWorkOrder", async (req, res) => {
+workOrderRoute.post("/WorkOrder", async (req, res) => {
   const data: WorkOrderInterface = req.body;
 
   try {
@@ -35,7 +35,7 @@ workOrderRoute.post("/newWorkOrder", async (req, res) => {
   }
 });
 
-workOrderRoute.post("/newTool", async (req, res) => {
+workOrderRoute.post("/Tool", async (req, res) => {
   const data: ToolInterface = req.body;
   console.log(data.tool);
   try {

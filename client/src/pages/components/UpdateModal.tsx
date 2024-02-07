@@ -46,12 +46,9 @@ const UpdateModal: React.FC<AddUpdateProps> = ({
     e.preventDefault();
     console.log("updating db");
     try {
-      const response = await axios.put(
-        "http://localhost:3001/put/update/updateTool",
-        {
-          tool,
-        }
-      );
+      const response = await axios.put("http://localhost:3001/update/Tool", {
+        tool,
+      });
       const data: string = response.data;
       console.log("from update tool route client side", data);
     } catch (error) {

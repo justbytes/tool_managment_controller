@@ -4,7 +4,7 @@ import { ToolInterface } from "../../interface/interface";
 
 const updateRoute = Router();
 
-updateRoute.put("/updateTool", async (req, res) => {
+updateRoute.put("/Tool", async (req, res) => {
   console.log("Updating Tool");
   const data: ToolInterface = req.body;
 

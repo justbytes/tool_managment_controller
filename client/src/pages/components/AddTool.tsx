@@ -8,6 +8,7 @@ import "./components.css";
 const AddTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
     id: 0,
+    assosiated_work_order: 0,
     tool_part_number: "",
     tool_serial_number: "",
     tool_manufacturer: "",
@@ -19,12 +20,9 @@ const AddTool: React.FC<AddProps> = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(`ADD TOOL SUBMIT`);
-    const response = await axios.post(
-      "http://localhost:3001/workOrder/add/newTool",
-      {
-        tool,
-      }
-    );
+    const response = await axios.post("http://localhost:3001/create/Tool", {
+      tool,
+    });
     const data: string = response.data;
 
     console.log(data);

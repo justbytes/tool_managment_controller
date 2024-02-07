@@ -4,11 +4,10 @@ import { ToolInterface } from "../../interface/interface";
 
 import Tool from "../../models/Tool";
 import Work_Order from "../../models/WorkOrder";
-import { log } from "console";
 
 const retrieveDataRoute = Router();
 
-retrieveDataRoute.get("/allTools", async (req, res) => {
+retrieveDataRoute.get("/Tools", async (req, res) => {
   console.log("Getting all Tools");
 
   try {
@@ -20,11 +19,16 @@ retrieveDataRoute.get("/allTools", async (req, res) => {
   }
 });
 
-retrieveDataRoute.get("/allWorkOrders", async (req, res) => {
+retrieveDataRoute.get("/WorkOrders", async (req, res) => {
   console.log("Getting all Work Orders");
 
   try {
-    const workOrderData = await Work_Order.findAll();
+    const workOrderData = await Work_Order.findAll({
+      include: {
+        model: Tool,
+        as: "tools",
+      },
+    });
     console.log(workOrderData);
     const workorders = workOrderData.map((workorder) =>
       workorder.get({ plain: true })

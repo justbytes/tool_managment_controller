@@ -4,13 +4,32 @@ import axios from "axios";
 import Dropdown from "./Dropdown";
 import UpdateModal from "./UpdateModal";
 
-import { Tool, AddProps } from "../../interface/interface";
+import { AddProps } from "../../interface/interface";
+
+interface Tool {
+  id: number;
+  assosiated_work_order: number;
+  tool_part_number: string;
+  tool_serial_number: string;
+  tool_manufacturer: string;
+  tool_cal_date: string;
+}
+
+interface WorkOrder {
+  id: number;
+  part_number: string;
+  serial_number: string;
+  customer: string;
+  order_number: string;
+  tools: Tool[];
+}
 
 import "./components.css";
 
 const UpdateTool: React.FC<AddProps> = () => {
   const initalTool: Tool = {
     id: 0,
+    assosiated_work_order: 0,
     tool_part_number: "",
     tool_serial_number: "",
     tool_manufacturer: "",
@@ -26,9 +45,7 @@ const UpdateTool: React.FC<AddProps> = () => {
 
   const refreshData = async () => {
     try {
-      const response = await axios.get<Tool[]>(
-        "http://localhost:3001/retrieve/get/allTools"
-      );
+      const response = await axios.get("http://localhost:3001/get/Tools");
       const data = response.data;
       console.log("this is from the useEffect:", data);
       setTools(data);
@@ -43,7 +60,7 @@ const UpdateTool: React.FC<AddProps> = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get<Tool[]>(
-          "http://localhost:3001/retrieve/get/allTools"
+          "http://localhost:3001/get/Tools"
         );
         const data = response.data;
         console.log("this is from the useEffect:", data);

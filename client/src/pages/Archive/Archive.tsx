@@ -10,6 +10,7 @@ import "./Archive.css";
 
 interface Tool {
   id: number;
+  assosiated_work_order: number;
   tool_part_number: string;
   tool_serial_number: string;
   tool_manufacturer: string;
@@ -35,6 +36,7 @@ const Archive: React.FC<AddWOUpdateProps> = () => {
     tools: [
       {
         id: 0,
+        assosiated_work_order: 0,
         tool_part_number: "",
         tool_serial_number: "",
         tool_manufacturer: "",
@@ -53,7 +55,7 @@ const Archive: React.FC<AddWOUpdateProps> = () => {
   const refreshData = async () => {
     try {
       const response = await axios.get<WorkOrder[]>(
-        "http://localhost:3001/retrieve/get/allWorkOrders"
+        "http://localhost:3001/get/WorkOrders"
       );
       const data = response.data;
       console.log("this is from the useEffect:", data);
@@ -69,7 +71,7 @@ const Archive: React.FC<AddWOUpdateProps> = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get<WorkOrder[]>(
-          "http://localhost:3001/retrieve/get/allWorkOrders"
+          "http://localhost:3001/get/WorkOrders"
         );
         const data = response.data;
         console.log(data);
