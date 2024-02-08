@@ -1,0 +1,38 @@
+.list-container {
+  border: 1px solid white;
+  width: 90%;
+  display: flex;
+  margin: auto;
+}
+
+.add-tool-form {
+  width: 50%;
+  min-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.add-tool {
+  background-color: rgba(240, 248, 255, 0.418);
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  border-radius: 5px;
+  align-items: center;
+  height: 90%;
+  width: 99%;
+  margin: 5px auto;
+  justify-content: center;
+}
+
+.add-tool-input {
+  padding: 3px;
+  margin: 15px;
+  width: 11.5rem;
+  height: 1.5rem;
+  text-align: center;
+  border-radius: 3px;
+  border: solid 1px black;
+}

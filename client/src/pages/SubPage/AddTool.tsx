@@ -3,9 +3,10 @@ import axios from "axios";
 
 import { Tool, AddProps } from "../../interface/interface";
 
-import "./components.css";
+import "../../css/AddTool.css";
 
 const AddTool: React.FC<AddProps> = () => {
+  // Used to sanatize inputs
   const initalTool: Tool = {
     id: 0,
     assosiated_work_order: 0,
@@ -14,9 +15,10 @@ const AddTool: React.FC<AddProps> = () => {
     tool_manufacturer: "",
     tool_cal_date: "",
   };
-
+  // State variables
   const [tool, setTool] = useState<Tool>(initalTool);
 
+  // Adds tool to the database
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(`ADD TOOL SUBMIT`);
@@ -30,6 +32,7 @@ const AddTool: React.FC<AddProps> = () => {
     setTool(initalTool);
   };
 
+  // The following update the state of tool when the input changes
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
     setTool({

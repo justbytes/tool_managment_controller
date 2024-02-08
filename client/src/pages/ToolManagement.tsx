@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import "./ItemManagement.css";
+import "../css/ToolManagement.css";
 
-import AddTool from "../components/AddTool";
-import UpdateTool from "../components/UpdateTool";
+import AddTool from "./SubPage/AddTool";
+import UpdateTool from "./SubPage/UpdateTool";
 
-const ItemManagement = () => {
+const ToolManagement = () => {
   const [currentOption, setCurrentOption] =
     useState<string>("itemManagementHome");
 
@@ -60,4 +60,4 @@ const ItemManagement = () => {
   );
 };
 
-export default ItemManagement;
+export default ToolManagement;

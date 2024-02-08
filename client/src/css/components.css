@@ -1,0 +1,161 @@
+/* ########################################################################## */
+
+.update-tool {
+  display: flex;
+  flex-direction: column;
+  min-width: 47rem;
+}
+
+.update-tool-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 80%;
+  margin: auto;
+  align-items: center;
+}
+
+.search-form {
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 20%;
+  align-items: center;
+  margin-left: 10px;
+  background-color: rgba(240, 248, 255, 0.418);
+}
+
+.search-div {
+  width: 95%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.search-input-div {
+  background-color: rgba(252, 250, 250, 0.816);
+  border-radius: 2px;
+  padding: 5px;
+  border: 1px solid grey;
+}
+
+.search-input {
+  width: 11.5rem;
+  height: 1.5rem;
+  margin: 3px;
+  text-align: center;
+  border-radius: 3px;
+  border: solid 1px black;
+}
+
+.find-all {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+.find-all-option {
+  text-decoration: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.622);
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0px;
+  text-align: center;
+  width: 95%;
+}
+
+.update-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 77%;
+  height: 95%;
+  margin-right: 10px;
+  background-color: rgba(240, 248, 255, 0.418);
+}
+
+.update-title {
+  width: 100%;
+}
+
+.tool-card {
+  width: 100%;
+  height: 100%;
+}
+
+.tool-list {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: rgba(252, 250, 250, 0.816);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.tool-list-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3px;
+  border: 1px solid;
+  border-radius: 5px 0px 0px 5px;
+  align-items: center;
+  height: 35%;
+}
+
+.description {
+  border-right: 1px solid;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: skyblue;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.description-value {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.t {
+  margin: 5px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: end;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  width: 30%;
+  transition: transform 0.3s ease-out;
+}
+
+.modal-active {
+  transform: translateX(0);
+  display: flex;
+  align-items: center;
+}
+
+.update-form {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+}

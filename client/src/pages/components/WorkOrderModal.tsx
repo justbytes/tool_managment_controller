@@ -5,7 +5,7 @@ import { Tool, AddWOUpdateProps } from "../../interface/interface";
 
 import { inputDate } from "./FormatDate";
 
-import "./components.css";
+import "../../css/components.css";
 
 const UpdateWorkOrderModal: React.FC<AddWOUpdateProps> = ({
   setWorkOrder,

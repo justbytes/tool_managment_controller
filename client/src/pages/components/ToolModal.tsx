@@ -5,9 +5,9 @@ import { Tool, AddUpdateProps } from "../../interface/interface";
 
 import { inputDate } from "./FormatDate";
 
-import "./components.css";
+import "../../css/components.css";
 
-const UpdateModal: React.FC<AddUpdateProps> = ({
+const ToolModal: React.FC<AddUpdateProps> = ({
   setTool,
   setModal,
   tool,
@@ -101,4 +101,4 @@ const UpdateModal: React.FC<AddUpdateProps> = ({
   );
 };
 
-export default UpdateModal;
+export default ToolModal;

@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./HomePage.css";
+import "../css/Home.css";
 
-function HomePage() {
+function Home() {
   return (
     <section>
       <div className="option">
@@ -27,4 +27,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;

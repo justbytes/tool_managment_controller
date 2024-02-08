@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "./CreateWO.css";
+import "../css/CreateWO.css";
 
 interface Tool {
   tool_part_number: string;

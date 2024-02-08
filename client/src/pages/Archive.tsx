@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { AddWOUpdateProps } from "../../interface/interface";
+import { AddWOUpdateProps } from "../interface/interface";
 
-import Dropdown from "../components/Dropdown";
-import UpdateWorkOrderModal from "../components/WorkOrderModal";
+import Dropdown from "./components/Dropdown";
+import UpdateWorkOrderModal from "./components/WorkOrderModal";
 
-import "./Archive.css";
+import "../css/Archive.css";
 
 interface Tool {
   id: number;

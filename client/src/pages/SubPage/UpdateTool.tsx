@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import Dropdown from "./Dropdown";
-import UpdateModal from "./UpdateModal";
+// Import components from components dir...
+import Dropdown from "../components/Dropdown";
+import ToolModal from "../components/ToolModal";
 
+// Import Interfaces
 import { AddProps } from "../../interface/interface";
 
+// Import CSS
+import "../../css/UpdateTool.css";
+
+// Probably get rid of this and use the import.
 interface Tool {
   id: number;
   assosiated_work_order: number;
@@ -15,18 +21,8 @@ interface Tool {
   tool_cal_date: string;
 }
 
-interface WorkOrder {
-  id: number;
-  part_number: string;
-  serial_number: string;
-  customer: string;
-  order_number: string;
-  tools: Tool[];
-}
-
-import "./components.css";
-
 const UpdateTool: React.FC<AddProps> = () => {
+  // Used to sanatize inputs
   const initalTool: Tool = {
     id: 0,
     assosiated_work_order: 0,
@@ -35,14 +31,17 @@ const UpdateTool: React.FC<AddProps> = () => {
     tool_manufacturer: "",
     tool_cal_date: "",
   };
+  // State variables
   const [modal, setModal] = useState<boolean>(false);
   const [tool, setTool] = useState<Tool>(initalTool);
   const [tools, setTools] = useState<Tool[]>([]);
   const [option, setOption] = useState<string>("Part Number");
   const [searchInput, setSearchInput] = useState<string>("");
 
+  // List of options for the dropdown component
   const options = ["Part Number", "Serial Number", "Manufacturer"];
 
+  // Used to rerender data
   const refreshData = async () => {
     try {
       const response = await axios.get("http://localhost:3001/get/Tools");
@@ -55,8 +54,8 @@ const UpdateTool: React.FC<AddProps> = () => {
     }
   };
 
+  // Gets a list of tools from the database
   useEffect(() => {
-    // Define the async function
     const fetchData = async () => {
       try {
         const response = await axios.get<Tool[]>(
@@ -70,8 +69,6 @@ const UpdateTool: React.FC<AddProps> = () => {
         console.error("Error fetching data: ", error);
       }
     };
-
-    // Call the async function
     fetchData();
   }, []);
 
@@ -79,6 +76,7 @@ const UpdateTool: React.FC<AddProps> = () => {
     setSearchInput(e.target.value);
   };
 
+  // this function filters the list of tools coming from the database based of a conditional
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let filteredTools = tools;
@@ -106,12 +104,17 @@ const UpdateTool: React.FC<AddProps> = () => {
     setTools(filteredTools);
   };
 
+  // This is for the dropdown
+  // Anytime a user selects a different option this it will
+  // change the options state and clear the input form previous searches
   const handleSelect = (value: string) => {
     console.log("Selected:", value);
     setOption(value);
     setSearchInput("");
     refreshData();
   };
+
+  // Formats the date to trim any extra characters3
 
   const formatDate = (tool_date: string): string => {
     const date = new Date(tool_date);
@@ -162,7 +165,7 @@ const UpdateTool: React.FC<AddProps> = () => {
               className="modal modal-active"
               onClick={(e) => e.stopPropagation()}
             >
-              <UpdateModal
+              <ToolModal
                 setTool={setTool}
                 setModal={setModal}
                 tool={tool}

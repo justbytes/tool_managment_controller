@@ -1,18 +1,18 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/HomePage/HomePage";
-import ItemManagement from "./pages/ItemManagement/ItemManagement";
-import Archive from "./pages/Archive/Archive";
-import CreateWO from "./pages/CreateWO/CreateWO";
+import Home from "./pages/Home";
+import ToolManagement from "./pages/ToolManagement";
+import Archive from "./pages/Archive";
+import CreateWO from "./pages/CreateWO";
 
 function App() {
   return (
     <>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/item-management" element={<ItemManagement />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/item-management" element={<ToolManagement />} />
           <Route path="archive" element={<Archive />} />
           <Route path="create-wo" element={<CreateWO />} />
         </Routes>
