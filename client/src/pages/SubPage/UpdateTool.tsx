@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+import useTools from "../ContextProviders/useTools";
 
 // Import components from components dir...
 import Dropdown from "../components/Dropdown";
 import ToolModal from "../components/ToolModal";
 
 // Import Interfaces
-import { AddProps } from "../../interface/interface";
+import { Tool, AddProps } from "../../interface/interface";
 
 // Import CSS
 import "../../css/UpdateTool.css";
 
-// Probably get rid of this and use the import.
-interface Tool {
-  id: number;
-  assosiated_work_order: number;
-  tool_part_number: string;
-  tool_serial_number: string;
-  tool_manufacturer: string;
-  tool_cal_date: string;
-}
-
-const UpdateTool: React.FC<AddProps> = () => {
+const UpdateTool: React.FC = () => {
   // Used to sanatize inputs
   const initalTool: Tool = {
     id: 0,
@@ -31,45 +22,18 @@ const UpdateTool: React.FC<AddProps> = () => {
     tool_manufacturer: "",
     tool_cal_date: "",
   };
+  const { tools, setTools, refreshData } = useTools();
   // State variables
   const [modal, setModal] = useState<boolean>(false);
   const [tool, setTool] = useState<Tool>(initalTool);
-  const [tools, setTools] = useState<Tool[]>([]);
   const [option, setOption] = useState<string>("Part Number");
   const [searchInput, setSearchInput] = useState<string>("");
 
   // List of options for the dropdown component
   const options = ["Part Number", "Serial Number", "Manufacturer"];
 
-  // Used to rerender data
-  const refreshData = async () => {
-    try {
-      const response = await axios.get("http://localhost:3001/get/Tools");
-      const data = response.data;
-      console.log("this is from the useEffect:", data);
-      setTools(data);
-    } catch (error) {
-      // Handle the error
-      console.error("Error fetching data: ", error);
-    }
-  };
-
-  // Gets a list of tools from the database
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Tool[]>(
-          "http://localhost:3001/get/Tools"
-        );
-        const data = response.data;
-        console.log("this is from the useEffect:", data);
-        setTools(data);
-      } catch (error) {
-        // Handle the error
-        console.error("Error fetching data: ", error);
-      }
-    };
-    fetchData();
+    refreshData();
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

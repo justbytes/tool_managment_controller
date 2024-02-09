@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Tool, AddProps } from "../../interface/interface";
+import { Tool } from "../../interface/interface";
 
 import "../../css/AddTool.css";
 
-const AddTool: React.FC<AddProps> = () => {
+const AddTool: React.FC = () => {
   // Used to sanatize inputs
   const initalTool: Tool = {
     id: 0,

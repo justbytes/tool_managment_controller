@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-import { AddWOUpdateProps } from "../interface/interface";
+import useWorkOrders from "./ContextProviders/useWorkOrders";
+import { AddWOUpdateProps, WorkOrder } from "../interface/interface";
 
 import Dropdown from "./components/Dropdown";
 import UpdateWorkOrderModal from "./components/WorkOrderModal";
 
 import "../css/Archive.css";
 
-interface Tool {
-  id: number;
-  assosiated_work_order: number;
-  tool_part_number: string;
-  tool_serial_number: string;
-  tool_manufacturer: string;
-  tool_cal_date: string;
-}
-
-interface WorkOrder {
-  id: number;
-  part_number: string;
-  serial_number: string;
-  customer: string;
-  order_number: string;
-  tools: Tool[];
-}
-
-const Archive: React.FC<AddWOUpdateProps> = () => {
+const Archive: React.FC = () => {
   const initialWorkOrder: WorkOrder = {
     id: 0,
     part_number: "",
@@ -44,44 +26,16 @@ const Archive: React.FC<AddWOUpdateProps> = () => {
       },
     ],
   };
+  const { workOrders, setWorkOrders, refreshData } = useWorkOrders();
   const [option, setOption] = useState<string>("Part Number");
   const [modal, setModal] = useState<boolean>(false);
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
-  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
 
   const options = ["Part Number", "Serial Number", "Customer"];
 
-  const refreshData = async () => {
-    try {
-      const response = await axios.get<WorkOrder[]>(
-        "http://localhost:3001/get/WorkOrders"
-      );
-      const data = response.data;
-      console.log("this is from the useEffect:", data);
-      setWorkOrders(data);
-    } catch (error) {
-      // Handle the error
-      console.error("Error fetching data: ", error);
-    }
-  };
-
   useEffect(() => {
-    // Define the async function
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<WorkOrder[]>(
-          "http://localhost:3001/get/WorkOrders"
-        );
-        const data = response.data;
-        console.log(data);
-        setWorkOrders(data);
-      } catch (error) {
-        // Handle the error
-        console.error("Error fetching data: ", error);
-      }
-    };
-    fetchData();
+    refreshData();
   }, []);
 
   console.log(workOrders);
@@ -135,7 +89,7 @@ const Archive: React.FC<AddWOUpdateProps> = () => {
                     id="search-input"
                     className="search-input"
                     placeholder={`Enter ` + option}
-                    value={searchInput || ""}
+                    value={searchInput}
                     onChange={handleInputChange}
                   />
                   <Dropdown
