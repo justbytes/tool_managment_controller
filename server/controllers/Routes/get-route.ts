@@ -35,4 +35,6 @@ retrieveDataRoute.get("/WorkOrders", async (req, res) => {
   }
 });
 
+// ADD CAPABILITY TO SEE HOW MANY WO's HAVE BEEN CREATED
+
 export default retrieveDataRoute;

@@ -37,3 +37,8 @@ export interface AddWOUpdateProps {
   refreshData: () => void;
   workOrder: WorkOrder;
 }
+
+export interface GetToolProps {
+  setModal: (value: boolean) => void;
+  addToolToUtilized: (tool: Tool) => void;
+}

@@ -5,9 +5,10 @@ import useTools from "../ContextProviders/useTools";
 // Import components from components dir...
 import Dropdown from "../components/Dropdown";
 import ToolModal from "../components/ToolModal";
+import { formatDate } from "../components/FormatDate";
 
 // Import Interfaces
-import { Tool, AddProps } from "../../interface/interface";
+import { Tool } from "../../interface/interface";
 
 // Import CSS
 import "../../css/UpdateTool.css";
@@ -76,16 +77,6 @@ const UpdateTool: React.FC = () => {
     setOption(value);
     setSearchInput("");
     refreshData();
-  };
-
-  // Formats the date to trim any extra characters3
-
-  const formatDate = (tool_date: string): string => {
-    const date = new Date(tool_date);
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    const year = date.getFullYear();
-    return `${month}-${day}-${year}`;
   };
 
   return (
