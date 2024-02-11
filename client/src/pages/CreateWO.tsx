@@ -10,20 +10,20 @@ import "../css/CreateWO.css";
 const CreateWO: React.FC = () => {
   // Create inital variables and set state
   const initialWorkOrder: WorkOrder = {
+    id: 0,
     part_number: "",
     serial_number: "",
     customer: "",
     order_number: "",
     tools: [
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
-      { tool_part_number: "", tool_cal_date: "" },
+      {
+        id: 0,
+        assosiated_work_order: 0,
+        tool_part_number: "",
+        tool_serial_number: "",
+        tool_manufacturer: "",
+        tool_cal_date: "",
+      },
     ],
   };
 
@@ -63,7 +63,7 @@ const CreateWO: React.FC = () => {
     });
   };
 
-  const addToolToUtilized = (tool: Tool) => {
+  const addToolsUtilized = (tool: Tool) => {
     setToolsUtilized((prevTools) => [...prevTools, tool]);
   };
 
@@ -76,100 +76,101 @@ const CreateWO: React.FC = () => {
 
         <div className="wo-choice">
           <form className="form" onSubmit={handleSubmit}>
-            <div>
-              <div className="left">
-                <input
-                  className="single-input"
-                  type="text"
-                  onChange={handlePartNumberChange}
-                  placeholder="Part Number"
-                  value={workOrder.part_number || ""}
-                />
+            <div className="left">
+              <input
+                className="single-input"
+                type="text"
+                onChange={handlePartNumberChange}
+                placeholder="Part Number"
+                value={workOrder.part_number || ""}
+              />
 
-                <input
-                  className="single-input"
-                  type="text"
-                  onChange={handleCustomerChange}
-                  placeholder="Customer Name"
-                  value={workOrder.customer || ""}
-                />
-              </div>
-              <div className="tool-div">
-                <div className="tool-container">
-                  {modal && (
-                    <div
-                      className="modal-backdrop"
-                      onClick={() => setModal(false)}
-                    >
-                      <div
-                        className="modal modal-active"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <GetToolModal
-                          addToolToUtilized={addToolToUtilized}
-                          setModal={setModal}
-                        />
-                      </div>
-                    </div>
-                  )}
-                  {toolsUtilized.map((tool) => (
-                    <div className="tool-list" key={tool.id}>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">ID</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{tool.id}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Part Number</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{tool.tool_part_number}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Serial Number</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{tool.tool_serial_number}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Manufacturer</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{tool.tool_manufacturer}</p>
-                        </div>
-                      </div>
-                      <div className="tool-list-container">
-                        <div className="description">
-                          <p className="t">Cal Due Date</p>
-                        </div>
-                        <div className="description-value">
-                          <p className="t">{formatDate(tool.tool_cal_date)}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+              <input
+                className="single-input"
+                type="text"
+                onChange={handleCustomerChange}
+                placeholder="Customer Name"
+                value={workOrder.customer || ""}
+              />
+            </div>
+            <div className="tool-div">
+              <div className="tool-container">
+                {modal && (
                   <div
-                    className="tool-list-adder"
-                    onClick={() => setModal(true)}
+                    className="modal-backdrop"
+                    onClick={() => setModal(false)}
                   >
-                    <div className="tool-list-container-adder">
-                      <p>CLICK TO ADD TOOL</p>
+                    <div
+                      className="modal modal-active"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <GetToolModal
+                        addToolsUtilized={addToolsUtilized}
+                        setModal={setModal}
+                      />
                     </div>
+                  </div>
+                )}
+                <div className="results">
+                  <div className="tool-card">
+                    {toolsUtilized.map((tool) => (
+                      <div className="tool-list" key={tool.id}>
+                        <div className="tool-list-container">
+                          <div className="description">
+                            <p className="t">ID</p>
+                          </div>
+                          <div className="description-value">
+                            <p className="t">{tool.id}</p>
+                          </div>
+                        </div>
+                        <div className="tool-list-container">
+                          <div className="description">
+                            <p className="t">Part Number</p>
+                          </div>
+                          <div className="description-value">
+                            <p className="t">{tool.tool_part_number}</p>
+                          </div>
+                        </div>
+                        <div className="tool-list-container">
+                          <div className="description">
+                            <p className="t">Serial Number</p>
+                          </div>
+                          <div className="description-value">
+                            <p className="t">{tool.tool_serial_number}</p>
+                          </div>
+                        </div>
+                        <div className="tool-list-container">
+                          <div className="description">
+                            <p className="t">Manufacturer</p>
+                          </div>
+                          <div className="description-value">
+                            <p className="t">{tool.tool_manufacturer}</p>
+                          </div>
+                        </div>
+                        <div className="tool-list-container">
+                          <div className="description">
+                            <p className="t">Cal Due Date</p>
+                          </div>
+                          <div className="description-value">
+                            <p className="t">
+                              {formatDate(tool.tool_cal_date)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="tool-list-adder" onClick={() => setModal(true)}>
+                  <div className="tool-list-container-adder">
+                    <p>CLICK TO ADD TOOL</p>
                   </div>
                 </div>
               </div>
-              <button className="btn" type="submit">
-                Submit
-              </button>
             </div>
+            <button className="btn" type="submit">
+              Submit
+            </button>
           </form>
         </div>
         <div className="back-div">

@@ -53,6 +53,13 @@
   min-height: 30rem;
 }
 
+.workorder-tool-div {
+  border: 1px solid;
+  border-radius: 5px;
+  align-items: center;
+  margin: 5px;
+}
+
 .tool-container {
   background-color: rgba(252, 250, 250, 0.816);
   border: 1px black solid;
@@ -67,31 +74,55 @@
   position: relative;
 }
 
-.more-stuff {
+.results {
+  border: 1px solid;
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: auto;
+  height: 85%;
+  overflow: auto;
+}
+
+.workorder-tool-list {
+  border: 1px solid;
+  border-radius: 5px;
   background-color: rgba(252, 250, 250, 0.816);
-  border: 1px black solid;
-  border-radius: 5px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   margin: 5px;
-  padding: 5px;
-  width: 48%;
+  height: 10%;
+  flex-wrap: wrap;
 }
 
-.calibration-tools {
-  margin: 2px;
-  border: 1px black solid;
-  border-radius: 5px;
+.workorder-tool-list-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3px;
+  border: 1px solid;
+  border-radius: 5px 0px 0px 5px;
+  align-items: center;
+  height: 70%;
 }
 
-.calibration-tool-field {
-  background-color: #fffff8bf;
-  border-radius: 5px;
+.workorder-modal-tool {
+  border-right: 1px solid;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: skyblue;
+  border-radius: 5px 0px 0px 5px;
 }
 
-.input-tool-pn {
-  margin: 5px;
+.tool-db-result {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.workorder-description-value,
+.workorder-description {
+  padding: 10px;
 }
 
 .tool-list-adder {

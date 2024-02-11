@@ -1,0 +1,49 @@
+.get-tool-modal-form {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.get-tool-modal {
+  background-color: rgba(240, 248, 255, 0.418);
+  flex-direction: column;
+  border: 1px black solid;
+  border-radius: 5px;
+  align-items: center;
+  height: 90%;
+  width: 99%;
+  margin: 5px auto;
+  justify-content: center;
+}
+
+.get-tool-modal-list {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: rgba(252, 250, 250, 0.816);
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin: 5px;
+  width: 48%;
+}
+
+.get-tool-modal-list-container {
+  margin: 3px;
+  border: 1px solid;
+  border-radius: 3px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+.get-tool-modal-description {
+  border-bottom: 1px solid;
+  width: 100%;
+  background: skyblue;
+  border-radius: 3px 3px 0 0;
+}
+
+.get-tool-modal-results {
+  margin: 5px;
+}
