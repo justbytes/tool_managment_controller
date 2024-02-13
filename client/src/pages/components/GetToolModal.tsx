@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import useTools from "../ContextProviders/useTools";
+import SearchForm from "./SearchForm";
 import { formatDate } from "./FormatDate";
 
 import { Tool, GetToolProps } from "../../interface/interface";
@@ -21,6 +22,9 @@ const GetToolModal: React.FC<GetToolProps> = ({
   return (
     <>
       <div className="get-tool-modal-form">
+        <div className="search-box">
+          <SearchForm />
+        </div>
         <div
           className="get-tool-modal"
           onClick={(e) => {

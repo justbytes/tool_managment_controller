@@ -6,6 +6,7 @@ import { Tool, AddUpdateProps } from "../../interface/interface";
 import { inputDate } from "./FormatDate";
 
 import "../../css/components.css";
+import SearchForm from "./SearchForm";
 
 const ToolModal: React.FC<AddUpdateProps> = ({
   setTool,
@@ -61,42 +62,47 @@ const ToolModal: React.FC<AddUpdateProps> = ({
 
   return (
     <>
-      <form className="update-form" onSubmit={updateToolSubmit}>
-        <div className="add-tool">
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handlePartNumberChange}
-            placeholder="Part Number"
-            value={tool.tool_part_number || ""}
-          />
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handleSerialNumberChange}
-            placeholder="Serial Number"
-            value={tool.tool_serial_number || ""}
-          />
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handleManufacturerChange}
-            placeholder="Customer Name"
-            value={tool.tool_manufacturer || ""}
-          />
-          <input
-            className="add-tool-input"
-            onChange={handleCalDateChange}
-            type="date"
-            id="cal-date"
-            name="date"
-            value={inputDate(tool.tool_cal_date) || ""}
-          />
-          <button className="btn" type="submit">
-            Update
-          </button>
-        </div>
-      </form>
+      <div>
+        <SearchForm />
+      </div>
+      <div>
+        <form className="update-form" onSubmit={updateToolSubmit}>
+          <div className="add-tool">
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handlePartNumberChange}
+              placeholder="Part Number"
+              value={tool.tool_part_number || ""}
+            />
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handleSerialNumberChange}
+              placeholder="Serial Number"
+              value={tool.tool_serial_number || ""}
+            />
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handleManufacturerChange}
+              placeholder="Customer Name"
+              value={tool.tool_manufacturer || ""}
+            />
+            <input
+              className="add-tool-input"
+              onChange={handleCalDateChange}
+              type="date"
+              id="cal-date"
+              name="date"
+              value={inputDate(tool.tool_cal_date) || ""}
+            />
+            <button className="btn" type="submit">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

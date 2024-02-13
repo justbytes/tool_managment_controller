@@ -3,6 +3,7 @@
   height: 100%;
   align-items: center;
   display: flex;
+  flex-direction: column;
 }
 
 .get-tool-modal {
@@ -15,6 +16,13 @@
   width: 99%;
   margin: 5px auto;
   justify-content: center;
+}
+
+.search-box {
+  width: 100%;
+  display: flex;
+  border: 1px solid;
+  border-radius: 5px;
 }
 
 .get-tool-modal-list {
