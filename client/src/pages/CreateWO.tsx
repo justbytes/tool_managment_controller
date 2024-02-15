@@ -107,6 +107,7 @@ const CreateWO: React.FC = () => {
                       <GetToolModal
                         addToolsUtilized={addToolsUtilized}
                         setModal={setModal}
+                        filteredTools={[]}
                       />
                     </div>
                   </div>

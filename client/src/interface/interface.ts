@@ -41,9 +41,10 @@ export interface AddWOUpdateProps {
 export interface GetToolProps {
   setModal: (value: boolean) => void;
   addToolsUtilized: (tool: Tool) => void;
+  filteredTools: Tool[];
 }
 
 export interface ToolProps {
-  tools: Tool;
-  setTools: (value: Tool) => void;
+  tools: Tool[];
+  setTools: (value: Tool[]) => void;
 }
