@@ -64,8 +64,8 @@ const GenerateWONumber = async (
 
   const updatedData: WorkOrderInterface = {
     ...data,
-    workOrder: {
-      ...data.workOrder,
+    updatedWorkOrder: {
+      ...data.updatedWorkOrder,
       order_number: orderNumber,
     },
   };

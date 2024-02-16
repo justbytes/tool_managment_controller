@@ -6,19 +6,18 @@ const DbUpdater = async (data: WorkOrderInterface): Promise<string> => {
   console.log("from dbupdater check for tools here:", data);
 
   try {
-    const WO = await Work_Order.create({ ...data.workOrder });
+    const WO = await Work_Order.create({ ...data.updatedWorkOrder });
 
-    console.log("lets see what else there is", data.workOrder.tools);
+    console.log(
+      "DbUpdater list of tools from data.workorder.tools",
+      data.updatedWorkOrder.tools
+    );
 
-    console.log("this many tools", data.workOrder.tools.length);
-
-    console.log("id of tool");
-
-    if (data.workOrder.tools.length > 0) {
-      for (const toolData of data.workOrder.tools) {
+    if (data.updatedWorkOrder.tools.length > 0) {
+      for (let i = 0; i < data.updatedWorkOrder.tools.length; i++) {
         console.log(
           " **************************************",
-          toolData.tool.tool_part_number
+          data.updatedWorkOrder.tools[i]
         );
 
         // Check if the tool already exists in the database

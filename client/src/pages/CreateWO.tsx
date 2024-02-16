@@ -15,16 +15,7 @@ const CreateWO: React.FC = () => {
     serial_number: "",
     customer: "",
     order_number: "",
-    tools: [
-      {
-        id: 0,
-        assosiated_work_order: 0,
-        tool_part_number: "",
-        tool_serial_number: "",
-        tool_manufacturer: "",
-        tool_cal_date: "",
-      },
-    ],
+    tools: [],
   };
 
   const [toolsUtilized, setToolsUtilized] = useState<Tool[]>([]);
@@ -33,11 +24,15 @@ const CreateWO: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`WORKORDER SUBMIT`, workOrder);
+    const updatedWorkOrder = {
+      ...workOrder,
+      tools: toolsUtilized,
+    };
+    console.log(`WORKORDER SUBMIT`, updatedWorkOrder);
     const response = await axios.post(
       "http://localhost:3001/create/WorkOrder",
       {
-        workOrder,
+        updatedWorkOrder,
       }
     );
     const data: string = response.data;

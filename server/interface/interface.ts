@@ -10,7 +10,7 @@ export interface ToolInterface {
 }
 
 export interface WorkOrderInterface {
-  workOrder: {
+  updatedWorkOrder: {
     part_number: string;
     serial_number: string;
     customer: string;

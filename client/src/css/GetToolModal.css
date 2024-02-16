@@ -25,6 +25,16 @@
   border-radius: 5px;
 }
 
+.btn1 {
+  margin: auto;
+  height: 2.5rem;
+  width: 4rem;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgb(30, 137, 41);
+  font-weight: bold;
+}
+
 .get-tool-modal-list {
   border: 1px solid;
   border-radius: 5px;

@@ -15,6 +15,8 @@ const workOrderRoute = Router();
 workOrderRoute.post("/WorkOrder", async (req, res) => {
   const data: WorkOrderInterface = req.body;
 
+  console.log("Create Work Order Route data:", data.updatedWorkOrder);
+
   try {
     // Generate the order number for the work order and asign it to the object
     const wo_complete = await GenerateWONumber(data);

@@ -89,7 +89,7 @@ const GetToolModal: React.FC<GetToolProps> = ({
                 />
               </div>
             </div>
-            <button className="btn" type="submit" onClick={handleSearch}>
+            <button className="btn1" type="submit" onClick={handleSearch}>
               Search
             </button>
           </div>
