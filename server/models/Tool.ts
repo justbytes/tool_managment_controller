@@ -6,7 +6,6 @@ import {
   CreationOptional,
 } from "sequelize";
 import sequelize from "../config/connection";
-import { CreateContextOptions } from "vm";
 
 class Tool extends Model<InferAttributes<Tool>, InferCreationAttributes<Tool>> {
   declare id: CreationOptional<number>;

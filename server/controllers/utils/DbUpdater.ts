@@ -1,6 +1,7 @@
 import { WorkOrderInterface } from "../../interface/interface";
 import Work_Order from "../../models/WorkOrder";
 import Tool from "../../models/Tool";
+import ToolWorkOrderLog from "../../models/ToolWorkOrderLog";
 
 const DbUpdater = async (data: WorkOrderInterface): Promise<string> => {
   console.log("from dbupdater check for tools here:", data);
@@ -15,26 +16,29 @@ const DbUpdater = async (data: WorkOrderInterface): Promise<string> => {
 
     if (data.updatedWorkOrder.tools.length > 0) {
       for (let i = 0; i < data.updatedWorkOrder.tools.length; i++) {
-        console.log(
-          " **************************************",
-          data.updatedWorkOrder.tools[i]
-        );
+        const id = data.updatedWorkOrder.tools;
+        const findID = id[i].id;
+        console.log("This is the id", id[i].id);
+
+        console.log(data.updatedWorkOrder.tools[i]);
 
         // Check if the tool already exists in the database
         let tool = await Tool.findOne({
           where: {
-            id: 1,
+            id: findID,
           },
         });
 
-        console.log("************************", tool);
-
         if (tool) {
           // If tool exists, update its workOrderId
-          await tool.update({ assosiated_work_order: WO.id });
+          await ToolWorkOrderLog.create({
+            toolId: tool.id,
+            workOrderId: WO.id,
+          });
         } else {
-          // If tool doesn't exist, create new tool and associate with the work order
-          // await Tool.create({ ...toolData, assosiated_work_order: WO.id });
+          console.log(
+            "That tool is not in the database please add it first and try again."
+          );
         }
       }
     }

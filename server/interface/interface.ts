@@ -1,4 +1,5 @@
 export interface ToolInterface {
+  id: number;
   tool: {
     id: number;
     assosiated_work_order: number;
