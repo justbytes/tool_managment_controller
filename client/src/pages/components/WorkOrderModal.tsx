@@ -21,13 +21,13 @@ const UpdateWorkOrderModal: React.FC<AddWOUpdateProps> = ({
     setWorkOrder(newWO);
   };
 
-  const handleSerialNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const value = (e.target as HTMLInputElement).value;
-    setWorkOrder({
-      ...workOrder,
-      serial_number: value,
-    });
-  };
+  // const handleSerialNumberChange = (e: React.FormEvent<HTMLInputElement>) => {
+  //   const value = (e.target as HTMLInputElement).value;
+  //   setWorkOrder({
+  //     ...workOrder,
+  //     serial_number: value,
+  //   });
+  // };
 
   const handleCustomerChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -74,13 +74,13 @@ const UpdateWorkOrderModal: React.FC<AddWOUpdateProps> = ({
             placeholder="Part Number"
             value={workOrder.part_number || ""}
           />
-          <input
+          {/* <input
             className="add-tool-input"
             type="text"
             onChange={handleSerialNumberChange}
             placeholder="Serial Number"
             value={workOrder.serial_number || ""}
-          />
+          /> */}
           <input
             className="add-tool-input"
             type="text"

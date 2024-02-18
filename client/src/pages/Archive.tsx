@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from "react";
 
 import useWorkOrders from "./ContextProviders/useWorkOrders";
-import { AddWOUpdateProps, WorkOrder } from "../interface/interface";
+import { WorkOrder, Tool } from "../interface/interface";
 
 import Dropdown from "./components/Dropdown";
 import UpdateWorkOrderModal from "./components/WorkOrderModal";
+import WorkOrdersToolsModal from "./components/WorkOrdersToolsModal";
 
 import "../css/Archive.css";
 
 const Archive: React.FC = () => {
   const initialWorkOrder: WorkOrder = {
+    date_created: "",
     id: 0,
     part_number: "",
-    serial_number: "",
     customer: "",
     order_number: "",
-    tools: [
-      {
-        id: 0,
-        assosiated_work_order: 0,
-        tool_part_number: "",
-        tool_serial_number: "",
-        tool_manufacturer: "",
-        tool_cal_date: "",
-      },
-    ],
+    tools: [],
+  };
+  const initalTool: Tool = {
+    id: 0,
+    assosiated_work_order: 0,
+    tool_part_number: "",
+    tool_serial_number: "",
+    tool_manufacturer: "",
+    tool_cal_date: "",
   };
   const { workOrders, setWorkOrders, refreshData } = useWorkOrders();
   const [option, setOption] = useState<string>("Part Number");
   const [modal, setModal] = useState<boolean>(false);
+  const [getToolsModal, setGetToolsModal] = useState<boolean>(false);
   const [workOrder, setWorkOrder] = useState<WorkOrder>(initialWorkOrder);
+  const [workOrderTools, setWorkOrderTools] = useState<Tool[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
 
   const options = ["Part Number", "Serial Number", "Customer"];
@@ -54,12 +56,13 @@ const Archive: React.FC = () => {
           .toLowerCase()
           .startsWith(searchInput.toLowerCase())
       );
-    } else if (option === "Serial Number") {
-      filteredWorkOrders = workOrders.filter((workorder) =>
-        workorder.serial_number
-          .toLowerCase()
-          .startsWith(searchInput.toLowerCase())
-      );
+      // ********** Replace with WORKORDER NUMBER
+      // } else if (option === "Serial Number") {
+      //   filteredWorkOrders = workOrders.filter((workorder) =>
+      //     workorder.serial_number
+      //       .toLowerCase()
+      //       .startsWith(searchInput.toLowerCase())
+      //   );
     } else if (option === "Customer") {
       filteredWorkOrders = workOrders.filter((workorder) =>
         workorder.customer.toLowerCase().startsWith(searchInput.toLowerCase())
@@ -124,6 +127,25 @@ const Archive: React.FC = () => {
                 </div>
               </div>
             )}
+
+            {getToolsModal && (
+              <div
+                className="modal-backdrop"
+                onClick={() => setGetToolsModal(false)}
+              >
+                <div
+                  className="modal modal-active"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <WorkOrdersToolsModal
+                    setGetToolsModal={setGetToolsModal}
+                    workOrderId={workOrder.id}
+                  />
+                </div>
+              </div>
+            )}
             <div className="update-choice">
               <div className="tool-card">
                 {workOrders.map((workorder) => (
@@ -153,10 +175,10 @@ const Archive: React.FC = () => {
                     </div>
                     <div className="tool-list-container">
                       <div className="description">
-                        <p className="t">Serial Number</p>
+                        <p className="t">WO Number</p>
                       </div>
                       <div className="description-value">
-                        <p className="t">{workorder.serial_number}</p>
+                        <p className="t">{workorder.order_number}</p>
                       </div>
                     </div>
                     <div className="tool-list-container">
@@ -171,9 +193,21 @@ const Archive: React.FC = () => {
                       <div className="description">
                         <p className="t">Date Created</p>
                       </div>
-                      {/* <div className="description-value">
-                        <p className="t">{formatDate(tool.tool_cal_date)}</p>
-                      </div> */}
+                      <div className="description-value">
+                        <p className="t">{workorder.date_created}</p>
+                      </div>
+                    </div>
+                    <div className="tool-list-container">
+                      <div
+                        className="description"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setWorkOrder(workorder);
+                          setGetToolsModal(true);
+                        }}
+                      >
+                        <p className="t">View Tools</p>
+                      </div>
                     </div>
                   </div>
                 ))}

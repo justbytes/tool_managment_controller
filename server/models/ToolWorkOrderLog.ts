@@ -1,7 +1,9 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection";
 
-class ToolWorkOrderLog extends Model {}
+class ToolWorkOrderLog extends Model {
+  toolId: any;
+}
 
 ToolWorkOrderLog.init(
   {

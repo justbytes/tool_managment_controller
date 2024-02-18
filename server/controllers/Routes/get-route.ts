@@ -4,6 +4,7 @@ import { ToolInterface } from "../../interface/interface";
 
 import Tool from "../../models/Tool";
 import Work_Order from "../../models/WorkOrder";
+import ToolWorkOrderLog from "../../models/ToolWorkOrderLog";
 
 const retrieveDataRoute = Router();
 
@@ -32,6 +33,52 @@ retrieveDataRoute.get("/WorkOrders", async (req, res) => {
     res.json(workorders);
   } catch (error) {
     res.send(error);
+  }
+});
+
+retrieveDataRoute.post("/WorkOrdersTools", async (req, res) => {
+  console.log("Getting a workorders tools list");
+  const { workOrderId } = req.body;
+
+  console.log("workorder id coming from workordertools route:", workOrderId);
+
+  try {
+    const getTools = await ToolWorkOrderLog.findAll({
+      where: {
+        workOrderId: workOrderId,
+      },
+      attributes: ["toolId"], // Fetch only the toolId column
+    });
+
+    console.log("Tools fetched are:", getTools);
+
+    const tools = [];
+
+    for (let i = 0; i < getTools.length; i++) {
+      // Correctly access the toolId for each item
+      const toolId = getTools[i].toolId;
+
+      try {
+        const tool = await Tool.findOne({
+          where: {
+            id: toolId,
+          },
+        });
+
+        // If the tool is found, add it to the tools array
+        if (tool) {
+          tools.push(tool);
+        }
+      } catch (innerError) {
+        console.log(`Error fetching tool with ID ${toolId}`, innerError);
+        // Optionally handle this error, e.g., by continuing to the next iteration
+      }
+    }
+
+    // Transform the result to return an array of tools
+    res.json(tools);
+  } catch (error) {
+    console.log("Error when retrieving tools for a specific work order", error);
   }
 });
 

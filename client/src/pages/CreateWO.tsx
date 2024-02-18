@@ -10,9 +10,9 @@ import "../css/CreateWO.css";
 const CreateWO: React.FC = () => {
   // Create inital variables and set state
   const initialWorkOrder: WorkOrder = {
+    date_created: "",
     id: 0,
     part_number: "",
-    serial_number: "",
     customer: "",
     order_number: "",
     tools: [],
@@ -40,6 +40,7 @@ const CreateWO: React.FC = () => {
     console.log(data);
 
     setWorkOrder(initialWorkOrder);
+    setToolsUtilized([]);
   };
 
   const handlePartNumberChange = (e: React.FormEvent<HTMLInputElement>) => {

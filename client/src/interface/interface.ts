@@ -8,9 +8,9 @@ export interface Tool {
 }
 
 export interface WorkOrder {
+  date_created: string;
   id: number;
   part_number: string;
-  serial_number: string;
   customer: string;
   order_number: string;
   tools: Tool[];
@@ -47,4 +47,9 @@ export interface GetToolProps {
 export interface ToolProps {
   tools: Tool[];
   setTools: (value: Tool[]) => void;
+}
+
+export interface GetWoToolsProps {
+  setGetToolsModal: (value: boolean) => void;
+  workOrderId: number;
 }

@@ -8,14 +8,14 @@
 
 .get-tool-modal {
   background-color: rgba(240, 248, 255, 0.418);
-  flex-direction: column;
   border: 1px black solid;
   border-radius: 5px;
-  align-items: center;
   height: 90%;
   width: 99%;
   margin: 5px auto;
   justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .search-box {
@@ -43,7 +43,9 @@
   flex-direction: column;
   align-items: baseline;
   margin: 5px;
-  width: 48%;
+  width: 45%;
+  max-height: 35%;
+  justify-content: center;
 }
 
 .get-tool-modal-list-container {

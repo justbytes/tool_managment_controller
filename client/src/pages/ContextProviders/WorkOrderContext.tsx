@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { WorkOrder } from "../../interface/interface";
 
+import { formatDate } from "../components/FormatDate";
+
 interface WorkOrderContextType {
   workOrders: WorkOrder[];
   setWorkOrders: React.Dispatch<React.SetStateAction<WorkOrder[]>>;
@@ -24,8 +26,18 @@ export const WorkOrderProvider: React.FC<{ children: ReactNode }> = ({
         "http://localhost:3001/get/WorkOrders"
       );
       const data = response.data;
-      console.log("this is from refreshData:", data);
-      setWorkOrders(data);
+
+      const newWorkOrder = data.map((workOrder) => {
+        // Assuming the date you want to format is stored in workOrder.date_created
+        // and you want to store the formatted date back in the same property or a new one.
+        const formattedDate = formatDate(workOrder.date_created);
+        return {
+          ...workOrder,
+          date_created: formattedDate, // or use a new property if you prefer
+        };
+      });
+      console.log("this is from refreshData:", newWorkOrder);
+      setWorkOrders(newWorkOrder);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
