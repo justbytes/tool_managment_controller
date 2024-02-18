@@ -60,6 +60,23 @@ const ToolModal: React.FC<AddUpdateProps> = ({
     setModal(false);
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/delete/tool/${tool.id}`
+      );
+      const data: string = response.data;
+      console.log(data);
+      setModal(false);
+      refreshData();
+    } catch (error) {
+      console.log(
+        "There was an error on the client side when deleting a tool",
+        error
+      );
+    }
+  };
+
   return (
     <>
       <form className="update-form" onSubmit={updateToolSubmit}>
@@ -96,6 +113,9 @@ const ToolModal: React.FC<AddUpdateProps> = ({
           <button className="btn" type="submit">
             Update
           </button>
+          <a className="btn delete-btn" onClick={handleDelete}>
+            Delete Tool
+          </a>
         </div>
       </form>
     </>

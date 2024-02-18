@@ -6,13 +6,13 @@ import Tool from "../../models/Tool";
 import Work_Order from "../../models/WorkOrder";
 import ToolWorkOrderLog from "../../models/ToolWorkOrderLog";
 
-const retrieveDataRoute = Router();
+const getRoute = Router();
 
-retrieveDataRoute.get("/Tools", async (req, res) => {
+getRoute.get("/Tools", async (req, res) => {
   console.log("Getting all Tools");
 
   try {
-    const toolData = await Tool.findAll();
+    const toolData = await Tool.findAll({ where: { in_use: true } });
     const tools = toolData.map((tool) => tool.get({ plain: true }));
     res.json(tools);
   } catch (error) {
@@ -20,7 +20,7 @@ retrieveDataRoute.get("/Tools", async (req, res) => {
   }
 });
 
-retrieveDataRoute.get("/WorkOrders", async (req, res) => {
+getRoute.get("/WorkOrders", async (req, res) => {
   console.log("Getting all Work Orders");
 
   try {
@@ -36,7 +36,7 @@ retrieveDataRoute.get("/WorkOrders", async (req, res) => {
   }
 });
 
-retrieveDataRoute.post("/WorkOrdersTools", async (req, res) => {
+getRoute.post("/WorkOrdersTools", async (req, res) => {
   console.log("Getting a workorders tools list");
   const { workOrderId } = req.body;
 
@@ -84,4 +84,4 @@ retrieveDataRoute.post("/WorkOrdersTools", async (req, res) => {
 
 // ADD CAPABILITY TO SEE HOW MANY WO's HAVE BEEN CREATED
 
-export default retrieveDataRoute;
+export default getRoute;

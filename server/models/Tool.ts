@@ -15,6 +15,7 @@ class Tool extends Model<InferAttributes<Tool>, InferCreationAttributes<Tool>> {
   declare tool_manufacturer: string;
   declare tool_cal_date: Date;
   declare date_created: CreationOptional<Date>;
+  declare in_use: Boolean;
 }
 
 Tool.init(
@@ -49,6 +50,11 @@ Tool.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
+    },
+    in_use: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     },
   },
   {
