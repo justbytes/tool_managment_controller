@@ -8,7 +8,7 @@ export interface Tool {
 }
 
 export interface WorkOrder {
-  date_created: string;
+  // date_created: string;
   id: number;
   part_number: string;
   customer: string;

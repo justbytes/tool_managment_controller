@@ -13,7 +13,6 @@ class Work_Order extends Model<
 > {
   declare id: CreationOptional<number>;
   declare part_number: string;
-  declare serial_number: string;
   declare customer: string;
   declare order_number: string;
   declare date_created: CreationOptional<Date>;
@@ -28,10 +27,6 @@ Work_Order.init(
       autoIncrement: true,
     },
     part_number: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    serial_number: {
       type: DataTypes.STRING,
       allowNull: false,
     },

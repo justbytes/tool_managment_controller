@@ -10,7 +10,6 @@ import "../css/CreateWO.css";
 const CreateWO: React.FC = () => {
   // Create inital variables and set state
   const initialWorkOrder: WorkOrder = {
-    date_created: "",
     id: 0,
     part_number: "",
     customer: "",

@@ -11,8 +11,8 @@ import "../css/Archive.css";
 
 const Archive: React.FC = () => {
   const initialWorkOrder: WorkOrder = {
-    date_created: "",
     id: 0,
+
     part_number: "",
     customer: "",
     order_number: "",
@@ -194,7 +194,7 @@ const Archive: React.FC = () => {
                         <p className="t">Date Created</p>
                       </div>
                       <div className="description-value">
-                        <p className="t">{workorder.date_created}</p>
+                        <p className="t">{(workorder as any).date_created}</p>
                       </div>
                     </div>
                     <div className="tool-list-container">

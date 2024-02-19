@@ -80,42 +80,47 @@ const ToolModal: React.FC<AddUpdateProps> = ({
   return (
     <>
       <form className="update-form" onSubmit={updateToolSubmit}>
-        <div className="add-tool">
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handlePartNumberChange}
-            placeholder="Part Number"
-            value={tool.tool_part_number || ""}
-          />
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handleSerialNumberChange}
-            placeholder="Serial Number"
-            value={tool.tool_serial_number || ""}
-          />
-          <input
-            className="add-tool-input"
-            type="text"
-            onChange={handleManufacturerChange}
-            placeholder="Customer Name"
-            value={tool.tool_manufacturer || ""}
-          />
-          <input
-            className="add-tool-input"
-            onChange={handleCalDateChange}
-            type="date"
-            id="cal-date"
-            name="date"
-            value={inputDate(tool.tool_cal_date) || ""}
-          />
-          <button className="btn" type="submit">
-            Update
-          </button>
-          <a className="btn delete-btn" onClick={handleDelete}>
-            Delete Tool
-          </a>
+        <div className="tool-updater">
+          <div className="input-holder">
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handlePartNumberChange}
+              placeholder="Part Number"
+              value={tool.tool_part_number || ""}
+            />
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handleSerialNumberChange}
+              placeholder="Serial Number"
+              value={tool.tool_serial_number || ""}
+            />
+            <input
+              className="add-tool-input"
+              type="text"
+              onChange={handleManufacturerChange}
+              placeholder="Customer Name"
+              value={tool.tool_manufacturer || ""}
+            />
+            <input
+              className="add-tool-input"
+              onChange={handleCalDateChange}
+              type="date"
+              id="cal-date"
+              name="date"
+              value={inputDate(tool.tool_cal_date) || ""}
+            />
+          </div>
+
+          <div className="btn-holder">
+            <button className="btn" type="submit">
+              Update
+            </button>
+            <a className="delete-btn" onClick={handleDelete}>
+              Delete Tool
+            </a>
+          </div>
         </div>
       </form>
     </>
